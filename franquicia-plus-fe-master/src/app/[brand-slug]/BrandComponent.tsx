@@ -52,165 +52,165 @@ const countries = [
   { name: 'Italia', code: '+39', flag: 'https://upload.wikimedia.org/wikipedia/commons/0/03/Flag_of_Italy.svg' },
   { name: 'España', code: '+34', flag: 'https://upload.wikimedia.org/wikipedia/commons/7/70/Flag_of_Spain_%28civil%29.svg' },
   {
-      name: "United States",
-      code: "+1",
-      flag: "https://upload.wikimedia.org/wikipedia/en/a/a4/Flag_of_the_United_States.svg",
-    },
-    {
-      name: "Canada",
-      code: "+1",
-      flag: "https://upload.wikimedia.org/wikipedia/commons/c/cf/Flag_of_Canada.svg",
-    },
-    {
-      name: "Mexico",
-      code: "+52",
-      flag: "https://upload.wikimedia.org/wikipedia/commons/f/fc/Flag_of_Mexico.svg",
-    },
-    {
-      name: "United Kingdom",
-      code: "+44",
-      flag: "https://upload.wikimedia.org/wikipedia/en/a/ae/Flag_of_the_United_Kingdom.svg",
-    },
-    {
-      name: "Germany",
-      code: "+49",
-      flag: "https://upload.wikimedia.org/wikipedia/en/b/ba/Flag_of_Germany.svg",
-    },
-    {
-      name: "France",
-      code: "+33",
-      flag: "https://upload.wikimedia.org/wikipedia/en/c/c3/Flag_of_France.svg",
-    },
-    {
-      name: "Ecuador",
-      code: "+593",
-      flag: "https://upload.wikimedia.org/wikipedia/commons/9/96/Flag_of_Ecuador.png",
-    },
-    {
-      name: "Brazil",
-      code: "+55",
-      flag: "https://upload.wikimedia.org/wikipedia/en/0/05/Flag_of_Brazil.svg",
-    },
-    {
-      name: "Japan",
-      code: "+81",
-      flag: "https://upload.wikimedia.org/wikipedia/en/9/9e/Flag_of_Japan.svg",
-    },
-    {
-      name: "Australia",
-      code: "+61",
-      flag: "https://upload.wikimedia.org/wikipedia/en/b/b9/Flag_of_Australia.svg",
-    },
-    {
-      name: "India",
-      code: "+91",
-      flag: "https://upload.wikimedia.org/wikipedia/en/4/41/Flag_of_India.svg",
-    },
-    {
-      name: "China",
-      code: "+86",
-      flag: "https://upload.wikimedia.org/wikipedia/commons/0/0c/Flag_of_China.svg",
-    },
-    {
-      name: "South Africa",
-      code: "+27",
-      flag: "https://upload.wikimedia.org/wikipedia/commons/a/af/Flag_of_South_Africa.svg",
-    },
-    {
-      name: "Argentina",
-      code: "+54",
-      flag: "https://upload.wikimedia.org/wikipedia/commons/1/1a/Flag_of_Argentina.svg",
-    },
-    {
-      name: "Spain",
-      code: "+34",
-      flag: "https://upload.wikimedia.org/wikipedia/en/9/9a/Flag_of_Spain.svg",
-    },
-    {
-      name: "Italy",
-      code: "+39",
-      flag: "https://upload.wikimedia.org/wikipedia/en/0/03/Flag_of_Italy.svg",
-    },
-    {
-      name: "Russia",
-      code: "+7",
-      flag: "https://upload.wikimedia.org/wikipedia/en/f/f3/Flag_of_Russia.svg",
-    },
-    {
-      name: "South Korea",
-      code: "+82",
-      flag: "https://upload.wikimedia.org/wikipedia/commons/0/09/Flag_of_South_Korea.svg",
-    },
-    {
-      name: "Nigeria",
-      code: "+234",
-      flag: "https://upload.wikimedia.org/wikipedia/commons/7/79/Flag_of_Nigeria.svg",
-    },
-    {
-      name: "Saudi Arabia",
-      code: "+966",
-      flag: "https://upload.wikimedia.org/wikipedia/commons/0/0d/Flag_of_Saudi_Arabia.svg",
-    },
-    {
-      name: "Turkey",
-      code: "+90",
-      flag: "https://upload.wikimedia.org/wikipedia/commons/b/b4/Flag_of_Turkey.svg",
-    },
-    {
-      name: "Egypt",
-      code: "+20",
-      flag: "https://upload.wikimedia.org/wikipedia/commons/f/fe/Flag_of_Egypt.svg",
-    },
-    {
-      name: "Indonesia",
-      code: "+62",
-      flag: "https://upload.wikimedia.org/wikipedia/commons/9/9f/Flag_of_Indonesia.svg",
-    },
-    {
-      name: "Pakistan",
-      code: "+92",
-      flag: "https://upload.wikimedia.org/wikipedia/commons/3/32/Flag_of_Pakistan.svg",
-    },
-    {
-      name: "Colombia",
-      code: "+57",
-      flag: "https://upload.wikimedia.org/wikipedia/commons/2/21/Flag_of_Colombia.svg",
-    },
-    {
-      name: "Kenya",
-      code: "+254",
-      flag: "https://upload.wikimedia.org/wikipedia/commons/4/49/Flag_of_Kenya.svg",
-    },
-    {
-      name: "Bangladesh",
-      code: "+880",
-      flag: "https://upload.wikimedia.org/wikipedia/commons/f/f9/Flag_of_Bangladesh.svg",
-    },
-    {
-      name: "New Zealand",
-      code: "+64",
-      flag: "https://upload.wikimedia.org/wikipedia/commons/3/3e/Flag_of_New_Zealand.svg",
-    },
-    {
-      name: "Vietnam",
-      code: "+84",
-      flag: "https://upload.wikimedia.org/wikipedia/commons/2/21/Flag_of_Vietnam.svg",
-    },
-    {
-      name: "Philippines",
-      code: "+63",
-      flag: "https://upload.wikimedia.org/wikipedia/commons/9/99/Flag_of_the_Philippines.svg",
-    },
-    {
-      name: "Thailand",
-      code: "+66",
-      flag: "https://upload.wikimedia.org/wikipedia/commons/a/a9/Flag_of_Thailand.svg",
-    },
-    {
-      name: "Malaysia",
-      code: "+60",
-      flag: "https://upload.wikimedia.org/wikipedia/commons/6/66/Flag_of_Malaysia.svg",
-    },  
+    name: "United States",
+    code: "+1",
+    flag: "https://upload.wikimedia.org/wikipedia/en/a/a4/Flag_of_the_United_States.svg",
+  },
+  {
+    name: "Canada",
+    code: "+1",
+    flag: "https://upload.wikimedia.org/wikipedia/commons/c/cf/Flag_of_Canada.svg",
+  },
+  {
+    name: "Mexico",
+    code: "+52",
+    flag: "https://upload.wikimedia.org/wikipedia/commons/f/fc/Flag_of_Mexico.svg",
+  },
+  {
+    name: "United Kingdom",
+    code: "+44",
+    flag: "https://upload.wikimedia.org/wikipedia/en/a/ae/Flag_of_the_United_Kingdom.svg",
+  },
+  {
+    name: "Germany",
+    code: "+49",
+    flag: "https://upload.wikimedia.org/wikipedia/en/b/ba/Flag_of_Germany.svg",
+  },
+  {
+    name: "France",
+    code: "+33",
+    flag: "https://upload.wikimedia.org/wikipedia/en/c/c3/Flag_of_France.svg",
+  },
+  {
+    name: "Ecuador",
+    code: "+593",
+    flag: "https://upload.wikimedia.org/wikipedia/commons/9/96/Flag_of_Ecuador.png",
+  },
+  {
+    name: "Brazil",
+    code: "+55",
+    flag: "https://upload.wikimedia.org/wikipedia/en/0/05/Flag_of_Brazil.svg",
+  },
+  {
+    name: "Japan",
+    code: "+81",
+    flag: "https://upload.wikimedia.org/wikipedia/en/9/9e/Flag_of_Japan.svg",
+  },
+  {
+    name: "Australia",
+    code: "+61",
+    flag: "https://upload.wikimedia.org/wikipedia/en/b/b9/Flag_of_Australia.svg",
+  },
+  {
+    name: "India",
+    code: "+91",
+    flag: "https://upload.wikimedia.org/wikipedia/en/4/41/Flag_of_India.svg",
+  },
+  {
+    name: "China",
+    code: "+86",
+    flag: "https://upload.wikimedia.org/wikipedia/commons/0/0c/Flag_of_China.svg",
+  },
+  {
+    name: "South Africa",
+    code: "+27",
+    flag: "https://upload.wikimedia.org/wikipedia/commons/a/af/Flag_of_South_Africa.svg",
+  },
+  {
+    name: "Argentina",
+    code: "+54",
+    flag: "https://upload.wikimedia.org/wikipedia/commons/1/1a/Flag_of_Argentina.svg",
+  },
+  {
+    name: "Spain",
+    code: "+34",
+    flag: "https://upload.wikimedia.org/wikipedia/en/9/9a/Flag_of_Spain.svg",
+  },
+  {
+    name: "Italy",
+    code: "+39",
+    flag: "https://upload.wikimedia.org/wikipedia/en/0/03/Flag_of_Italy.svg",
+  },
+  {
+    name: "Russia",
+    code: "+7",
+    flag: "https://upload.wikimedia.org/wikipedia/en/f/f3/Flag_of_Russia.svg",
+  },
+  {
+    name: "South Korea",
+    code: "+82",
+    flag: "https://upload.wikimedia.org/wikipedia/commons/0/09/Flag_of_South_Korea.svg",
+  },
+  {
+    name: "Nigeria",
+    code: "+234",
+    flag: "https://upload.wikimedia.org/wikipedia/commons/7/79/Flag_of_Nigeria.svg",
+  },
+  {
+    name: "Saudi Arabia",
+    code: "+966",
+    flag: "https://upload.wikimedia.org/wikipedia/commons/0/0d/Flag_of_Saudi_Arabia.svg",
+  },
+  {
+    name: "Turkey",
+    code: "+90",
+    flag: "https://upload.wikimedia.org/wikipedia/commons/b/b4/Flag_of_Turkey.svg",
+  },
+  {
+    name: "Egypt",
+    code: "+20",
+    flag: "https://upload.wikimedia.org/wikipedia/commons/f/fe/Flag_of_Egypt.svg",
+  },
+  {
+    name: "Indonesia",
+    code: "+62",
+    flag: "https://upload.wikimedia.org/wikipedia/commons/9/9f/Flag_of_Indonesia.svg",
+  },
+  {
+    name: "Pakistan",
+    code: "+92",
+    flag: "https://upload.wikimedia.org/wikipedia/commons/3/32/Flag_of_Pakistan.svg",
+  },
+  {
+    name: "Colombia",
+    code: "+57",
+    flag: "https://upload.wikimedia.org/wikipedia/commons/2/21/Flag_of_Colombia.svg",
+  },
+  {
+    name: "Kenya",
+    code: "+254",
+    flag: "https://upload.wikimedia.org/wikipedia/commons/4/49/Flag_of_Kenya.svg",
+  },
+  {
+    name: "Bangladesh",
+    code: "+880",
+    flag: "https://upload.wikimedia.org/wikipedia/commons/f/f9/Flag_of_Bangladesh.svg",
+  },
+  {
+    name: "New Zealand",
+    code: "+64",
+    flag: "https://upload.wikimedia.org/wikipedia/commons/3/3e/Flag_of_New_Zealand.svg",
+  },
+  {
+    name: "Vietnam",
+    code: "+84",
+    flag: "https://upload.wikimedia.org/wikipedia/commons/2/21/Flag_of_Vietnam.svg",
+  },
+  {
+    name: "Philippines",
+    code: "+63",
+    flag: "https://upload.wikimedia.org/wikipedia/commons/9/99/Flag_of_the_Philippines.svg",
+  },
+  {
+    name: "Thailand",
+    code: "+66",
+    flag: "https://upload.wikimedia.org/wikipedia/commons/a/a9/Flag_of_Thailand.svg",
+  },
+  {
+    name: "Malaysia",
+    code: "+60",
+    flag: "https://upload.wikimedia.org/wikipedia/commons/6/66/Flag_of_Malaysia.svg",
+  },
 ];
 
 const BrandComponent = ({ detalleMarca }: props) => {
@@ -280,7 +280,7 @@ const BrandComponent = ({ detalleMarca }: props) => {
         "&pais=" +
         country +
         "&provincia=" +
-        province +
+        province + "abc" +
         "&telefono=" +
         phone +
         "&email=" +
@@ -293,7 +293,7 @@ const BrandComponent = ({ detalleMarca }: props) => {
       const response = axios.post("/marca/send_email/", parametrosn, {
         headers: {
           "Content-Type": "application/x-www-form-urlencoded",
-          // "Authorization": "Bearer 123456",
+          "Authorization": "Bearer 123456",
         },
       });
       console.log(phone)
@@ -302,6 +302,7 @@ const BrandComponent = ({ detalleMarca }: props) => {
           contact_first_name: name,
           contact_last_name: surname,
           contact_email: email,
+
           contact_phone_number: phone,
           contact_job_title: country,
           contact_city: province,
@@ -363,15 +364,15 @@ const BrandComponent = ({ detalleMarca }: props) => {
               regex: "",
               placeholder: "",
             },
-              contact_city: {
+            contact_city: {
               name: "Provincia",
-            type: "text",
-            lead: "contact_city",
-            required: "False",
-            options: [],
-            default: "",
-            regex: "",
-            placeholder: "",
+              type: "text",
+              lead: "contact_city",
+              required: "False",
+              options: [],
+              default: "",
+              regex: "",
+              placeholder: "",
             },
             cf_contact_comentario_aycp_text: {
               name: "Comentario",
@@ -442,7 +443,7 @@ const BrandComponent = ({ detalleMarca }: props) => {
           device_os_name: "Windows",
           device_os_version: "10.0",
           device_os_platform: "x64",
-          contact_phone: null,
+          contact_phone: phone,
           runner_version: "0.1.13",
         })
         .then(console.log)
@@ -482,6 +483,7 @@ const BrandComponent = ({ detalleMarca }: props) => {
           );
         });
     }
+
   };
 
   useEffect(() => {
@@ -572,14 +574,6 @@ const BrandComponent = ({ detalleMarca }: props) => {
 
   const whiteBoxes = [
     {
-      title: "Valor de Franquicia",
-      value: Number(brandDetails?.valor_franquicia).toLocaleString("en-US", {
-        style: "currency",
-        currency: "USD",
-        maximumFractionDigits: 0,
-      }),
-    },
-    {
       title: "Regalias",
       value: brandDetails?.regalias,
     },
@@ -597,7 +591,7 @@ const BrandComponent = ({ detalleMarca }: props) => {
         style: "currency",
         currency: "USD",
         maximumFractionDigits: 0,
-      }),
+      }).replace(",", "."),
     },
     {
       title: "Metros local",
@@ -607,19 +601,11 @@ const BrandComponent = ({ detalleMarca }: props) => {
       title: "Recuperación inversión",
       value: brandDetails?.recuperacion_inversion,
     },
-    {
-      title: "Población mínima",
-      value: brandDetails?.poblacion_minima,
-    },
-    {
-      title: "¿Auditoria y Soporte?",
-      value: brandDetails?.auditoria_soporte ? "Si" : "No",
-    },
-    {
-      title: "Franquicias en Ecuador",
-      value: brandDetails?.franquicias_en_ecuador,
-    },
   ];
+
+  useEffect(() => {
+    setBrand(brandDetails?.nombre);
+  }, [brandDetails]);
 
   return (
     <main>
@@ -913,7 +899,7 @@ const BrandComponent = ({ detalleMarca }: props) => {
                     style={{ fontFamily: "Mukata Mahee Bold" }}
                     className="text-white leading-[2.375rem] text-[3.25em] text-center"
                   >
-                    Empieza tu negocio desde
+                    Empieza tu negocio con
                   </p>
                 </div>
                 <div className="flex justify-center">
@@ -922,7 +908,7 @@ const BrandComponent = ({ detalleMarca }: props) => {
                       style: "currency",
                       currency: "USD",
                       maximumFractionDigits: 0,
-                    })}
+                    }).replace(",", ".")}
                   </p>
                 </div>
                 <div className="flex justify-center pt-[0.75em]">
@@ -958,7 +944,7 @@ const BrandComponent = ({ detalleMarca }: props) => {
                           style={{ fontFamily: "Mukata Mahee Bold" }}
                           className="lg:text-[1.6875em] lg:leading-[3.75rem] text-xl text-center relative -bottom-4"
                         >
-                          Desde{" "}
+                          {" "}
                           <span className="text-[#47505a] text-[2.125em]">
                             {" "}
                             {Number(
@@ -967,7 +953,7 @@ const BrandComponent = ({ detalleMarca }: props) => {
                               style: "currency",
                               currency: "USD",
                               maximumFractionDigits: 0,
-                            })}
+                            }).replace(",", ".")}
                           </span>
                         </p>
                       </div>
@@ -978,7 +964,7 @@ const BrandComponent = ({ detalleMarca }: props) => {
                           style={{ fontFamily: "Mukata Mahee Bold" }}
                           className="lg:text-[2.25em] lg:leading-[2rem] text-2xl text-center"
                         >
-                          Adecuación Aprox. <br />
+                          Implementación <br />
                           del Local
                         </p>
                       </div>
@@ -987,7 +973,7 @@ const BrandComponent = ({ detalleMarca }: props) => {
                           style={{ fontFamily: "Mukata Mahee Bold" }}
                           className="lg:text-[1.6875em] lg:leading-[3.75rem] text-xl text-center relative -bottom-4"
                         >
-                          Desde{" "}
+                          {" "}
                           <span className="text-[#47505a] text-[2.125em]">
                             {" "}
                             {Number(
@@ -996,7 +982,7 @@ const BrandComponent = ({ detalleMarca }: props) => {
                               style: "currency",
                               currency: "USD",
                               maximumFractionDigits: 0,
-                            })}
+                            }).replace(",", ".")}
                           </span>
                         </p>
                       </div>
@@ -1094,8 +1080,8 @@ const BrandComponent = ({ detalleMarca }: props) => {
                         />
                       </div>
                       {/* País de Interés (Ahora ocupa toda la fila) */}
-                      
-                        
+
+
 
                       {/* Comentado - No borrar */}
                       {/*
@@ -1129,9 +1115,9 @@ const BrandComponent = ({ detalleMarca }: props) => {
                     */}
                       <div className="form-group lg:w-1/2 w-full py-2 px-2 relative">
                         <div className="flex items-center border rounded-lg overflow-hidden">
-                          <div className="flex items-center gap-4 border-r w-[50%]">
-                              <select
-                              className="form-control cursor-pointer w-[60%!important]"
+                          <div className="flex flex-col items-center md:flex-row gap-4 border-r w-full">
+                            <select
+                              className="form-control cursor-pointer lg:w-[60%!important]"
                               id="pais-interes"
                               name="pais"
                               value={country}
@@ -1147,19 +1133,19 @@ const BrandComponent = ({ detalleMarca }: props) => {
                               ))}
                             </select>
                             <div className="flex items-center gap-2">
-                            <img src={flag} alt={`${country} Flag`} className="w-6 h-4" />
-                            <span className="text-md">{phoneCode}</span>
+                              <img src={flag} alt={`${country} Flag`} className="w-6 h-4" />
+                              <span className="text-md">{phoneCode}</span>
+                              <input
+                                type="text"
+                                className="form-control flex-1 pl-2"
+                                name="telefono"
+                                value={phone2}
+                                onChange={handlePhoneChange}
+                                placeholder="Teléfono celular"
+                                required
+                              />
                             </div>
                           </div>
-                          <input
-                            type="text"
-                            className="form-control flex-1 pl-2"
-                            name="telefono"
-                            value={phone2}
-                            onChange={handlePhoneChange}
-                            placeholder="Teléfono celular"
-                            required
-                          />
                         </div>
                       </div>
                       <div className="form-group lg:w-1/2 w-full py-2 px-2">

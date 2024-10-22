@@ -14,6 +14,179 @@ import { IoPaperPlaneSharp } from "react-icons/io5";
 import axios from "../utils/axios";
 import { toast } from "react-toastify";
 
+const countries = [
+  { name: 'Ecuador', code: '+593', flag: 'https://upload.wikimedia.org/wikipedia/commons/9/96/Flag_of_Ecuador.png' },
+  { name: 'Argentina', code: '+54', flag: 'https://upload.wikimedia.org/wikipedia/commons/1/1a/Flag_of_Argentina.svg' },
+  { name: 'Brasil', code: '+55', flag: 'https://upload.wikimedia.org/wikipedia/commons/0/05/Flag_of_Brazil.svg' },
+  { name: 'Colombia', code: '+57', flag: 'https://upload.wikimedia.org/wikipedia/commons/2/21/Flag_of_Colombia.svg' },
+  { name: 'México', code: '+52', flag: 'https://upload.wikimedia.org/wikipedia/commons/f/fc/Flag_of_Mexico.svg' },
+  { name: 'Perú', code: '+51', flag: 'https://upload.wikimedia.org/wikipedia/commons/c/cf/Flag_of_Peru.svg' },
+  { name: 'Usa', code: '+1', flag: 'https://upload.wikimedia.org/wikipedia/commons/a/a4/Flag_of_the_United_States.svg' },
+  { name: 'Francia', code: '+33', flag: 'https://upload.wikimedia.org/wikipedia/commons/a/a4/Flag_of_the_United_States.svg' },
+  { name: 'Italia', code: '+39', flag: 'https://upload.wikimedia.org/wikipedia/commons/0/03/Flag_of_Italy.svg' },
+  { name: 'España', code: '+34', flag: 'https://upload.wikimedia.org/wikipedia/commons/7/70/Flag_of_Spain_%28civil%29.svg' },
+  {
+      name: "United States",
+      code: "+1",
+      flag: "https://upload.wikimedia.org/wikipedia/en/a/a4/Flag_of_the_United_States.svg",
+    },
+    {
+      name: "Canada",
+      code: "+1",
+      flag: "https://upload.wikimedia.org/wikipedia/commons/c/cf/Flag_of_Canada.svg",
+    },
+    {
+      name: "Mexico",
+      code: "+52",
+      flag: "https://upload.wikimedia.org/wikipedia/commons/f/fc/Flag_of_Mexico.svg",
+    },
+    {
+      name: "United Kingdom",
+      code: "+44",
+      flag: "https://upload.wikimedia.org/wikipedia/en/a/ae/Flag_of_the_United_Kingdom.svg",
+    },
+    {
+      name: "Germany",
+      code: "+49",
+      flag: "https://upload.wikimedia.org/wikipedia/en/b/ba/Flag_of_Germany.svg",
+    },
+    {
+      name: "France",
+      code: "+33",
+      flag: "https://upload.wikimedia.org/wikipedia/en/c/c3/Flag_of_France.svg",
+    },
+    {
+      name: "Ecuador",
+      code: "+593",
+      flag: "https://upload.wikimedia.org/wikipedia/commons/9/96/Flag_of_Ecuador.png",
+    },
+    {
+      name: "Brazil",
+      code: "+55",
+      flag: "https://upload.wikimedia.org/wikipedia/en/0/05/Flag_of_Brazil.svg",
+    },
+    {
+      name: "Japan",
+      code: "+81",
+      flag: "https://upload.wikimedia.org/wikipedia/en/9/9e/Flag_of_Japan.svg",
+    },
+    {
+      name: "Australia",
+      code: "+61",
+      flag: "https://upload.wikimedia.org/wikipedia/en/b/b9/Flag_of_Australia.svg",
+    },
+    {
+      name: "India",
+      code: "+91",
+      flag: "https://upload.wikimedia.org/wikipedia/en/4/41/Flag_of_India.svg",
+    },
+    {
+      name: "China",
+      code: "+86",
+      flag: "https://upload.wikimedia.org/wikipedia/commons/0/0c/Flag_of_China.svg",
+    },
+    {
+      name: "South Africa",
+      code: "+27",
+      flag: "https://upload.wikimedia.org/wikipedia/commons/a/af/Flag_of_South_Africa.svg",
+    },
+    {
+      name: "Argentina",
+      code: "+54",
+      flag: "https://upload.wikimedia.org/wikipedia/commons/1/1a/Flag_of_Argentina.svg",
+    },
+    {
+      name: "Spain",
+      code: "+34",
+      flag: "https://upload.wikimedia.org/wikipedia/en/9/9a/Flag_of_Spain.svg",
+    },
+    {
+      name: "Italy",
+      code: "+39",
+      flag: "https://upload.wikimedia.org/wikipedia/en/0/03/Flag_of_Italy.svg",
+    },
+    {
+      name: "Russia",
+      code: "+7",
+      flag: "https://upload.wikimedia.org/wikipedia/en/f/f3/Flag_of_Russia.svg",
+    },
+    {
+      name: "South Korea",
+      code: "+82",
+      flag: "https://upload.wikimedia.org/wikipedia/commons/0/09/Flag_of_South_Korea.svg",
+    },
+    {
+      name: "Nigeria",
+      code: "+234",
+      flag: "https://upload.wikimedia.org/wikipedia/commons/7/79/Flag_of_Nigeria.svg",
+    },
+    {
+      name: "Saudi Arabia",
+      code: "+966",
+      flag: "https://upload.wikimedia.org/wikipedia/commons/0/0d/Flag_of_Saudi_Arabia.svg",
+    },
+    {
+      name: "Turkey",
+      code: "+90",
+      flag: "https://upload.wikimedia.org/wikipedia/commons/b/b4/Flag_of_Turkey.svg",
+    },
+    {
+      name: "Egypt",
+      code: "+20",
+      flag: "https://upload.wikimedia.org/wikipedia/commons/f/fe/Flag_of_Egypt.svg",
+    },
+    {
+      name: "Indonesia",
+      code: "+62",
+      flag: "https://upload.wikimedia.org/wikipedia/commons/9/9f/Flag_of_Indonesia.svg",
+    },
+    {
+      name: "Pakistan",
+      code: "+92",
+      flag: "https://upload.wikimedia.org/wikipedia/commons/3/32/Flag_of_Pakistan.svg",
+    },
+    {
+      name: "Colombia",
+      code: "+57",
+      flag: "https://upload.wikimedia.org/wikipedia/commons/2/21/Flag_of_Colombia.svg",
+    },
+    {
+      name: "Kenya",
+      code: "+254",
+      flag: "https://upload.wikimedia.org/wikipedia/commons/4/49/Flag_of_Kenya.svg",
+    },
+    {
+      name: "Bangladesh",
+      code: "+880",
+      flag: "https://upload.wikimedia.org/wikipedia/commons/f/f9/Flag_of_Bangladesh.svg",
+    },
+    {
+      name: "New Zealand",
+      code: "+64",
+      flag: "https://upload.wikimedia.org/wikipedia/commons/3/3e/Flag_of_New_Zealand.svg",
+    },
+    {
+      name: "Vietnam",
+      code: "+84",
+      flag: "https://upload.wikimedia.org/wikipedia/commons/2/21/Flag_of_Vietnam.svg",
+    },
+    {
+      name: "Philippines",
+      code: "+63",
+      flag: "https://upload.wikimedia.org/wikipedia/commons/9/99/Flag_of_the_Philippines.svg",
+    },
+    {
+      name: "Thailand",
+      code: "+66",
+      flag: "https://upload.wikimedia.org/wikipedia/commons/a/a9/Flag_of_Thailand.svg",
+    },
+    {
+      name: "Malaysia",
+      code: "+60",
+      flag: "https://upload.wikimedia.org/wikipedia/commons/6/66/Flag_of_Malaysia.svg",
+    },  
+];
+
 const ContactUsComponent = () => {
   const [names, setNames] = useState("");
   const [surnames, setSurnames] = useState("");
@@ -346,8 +519,14 @@ const ContactUsComponent = () => {
                     onChange={(e: any) => setCountry(e.target.value)}
                     className="py-3 pl-2 rounded-lg lg:w-44 w-full"
                   >
-                    <option value="">País de interés</option>
-                    <option value="Ecuador">Ecuador</option>
+                    <option value="" disabled>
+                      País
+                    </option>
+                    {countries.map((country) => (
+                      <option value={country.name} key={country.name}>
+                        {country.name}
+                      </option>
+                    ))}
                   </select>
                 </div>
                 <div className="flex gap-4 justify-start">
