@@ -220,14 +220,13 @@ const ContactUsComponent = () => {
         message;
       const response = axios.post("/marca/enviar_email/", parametrosn);
       axios
-        .post("https://api.escala.com/new-lead/", {
-          cf_contact_comentario_aycp_text: message,
-          contact_email: email,
+                .post("https://api.escala.com/new-lead/", {
           contact_first_name: names,
-          contact_job_title: country,
           contact_last_name: surnames,
-          contact_phone_number: "593" + phone,
-
+          contact_email: email,
+          account_phone: phone,
+          contact_job_title: country,
+          cf_contact_comentario_aycp_text: message,
           form_id: "f5db04f4-c5c0-11ee-9cc7-1a08bc4c529e",
           form_name: "Contactos-Web",
           form_fields_metadata: {
@@ -262,10 +261,10 @@ const ContactUsComponent = () => {
                 "[a-z0-9-A-Z!#$%&'*+/=?^_`{|}~-]+(?:\\.[a-z0-9-A-Z!#$%&'*+/=?^_`{|}~-]+)*@(?:[a-z0-9-A-Z](?:[a-z0-9-A-Z]*[a-z0-9-A-Z])?\\.)+[a-z0-9-A-Z](?:[a-z0-9-A-Z]*[a-z0-9-A-Z])+",
               placeholder: "",
             },
-            contact_phone_number: {
-              name: "WhatsApp",
+            account_phone: {
+              name: "Número telefónico",
               type: "text",
-              lead: "contact_phone_number",
+              lead: "account_phone",
               required: "False",
               options: [],
               default: "",
@@ -295,21 +294,21 @@ const ContactUsComponent = () => {
           },
           create_deals: true,
           update_deal_value: false,
-          notify_leads: true,
-          notify_leads_recipients: ["asesoria@franquiciaplus.com"],
+          notify_leads_recipients: [],
           notify_submits: false,
           notify_submits_recipients: [],
-          page_url: "https://escalapages.com/plugins/forms/embed.html",
-          page_title: "Escala - Form",
+          page_url: "file:///C:/Users/ruiz_/Desktop/index%20(2).html",
+          page_title: "",
           tenant_id: "a9792f78-9064-11ee-b842-ee9d42ce137e",
           customer_id: "a9792f78-9064-11ee-b842-ee9d42ce137e",
-          visitor_id: "bcc4bf53-4b06-453f-afa9-e53f1f29a618",
-          visit_id: "5798b27f-6bcc-4095-98a3-f9e0ac7293a6",
+          visitor_id: "ad903a18-7549-4f19-89e0-9012eee0e39c",
+          visit_id: "314fe3af-840f-4d4d-b52c-fe2e157dd0d5",
           utm_type: "typein",
           utm_source: "(direct)",
           utm_medium: "(none)",
           utm_campaign: "(none)",
           utm_terms: "(none)",
+          utm_content: "(none)",
           escala_acc: "(none)",
           escala_cam: "(none)",
           escala_grp: "(none)",
@@ -323,6 +322,7 @@ const ContactUsComponent = () => {
           first_utm_medium: "(none)",
           first_utm_campaign: "(none)",
           first_utm_terms: "(none)",
+          first_utm_content: "(none)",
           first_escala_acc: "(none)",
           first_escala_cam: "(none)",
           first_escala_grp: "(none)",
@@ -336,13 +336,13 @@ const ContactUsComponent = () => {
           device_model: "",
           device_client_type: "browser",
           device_client_name: "Chrome",
-          device_client_version: "120.0",
+          device_client_version: "130.0",
           device_client_engine: "Blink",
           device_os_name: "Windows",
           device_os_version: "10.0",
           device_os_platform: "x64",
           contact_phone: null,
-          runner_version: "0.1.13",
+          runner_version: "0.2.1",
         })
         .then(console.log)
         .catch(console.error);
