@@ -102,20 +102,8 @@ const Footer = () => {
               >
                 <FaYoutube />
               </a>
-              <a
-                className="text-white"
-                href="https://www.youtube.com/@franquiciaplus-franquicias3846"
-              >
-                <FaTiktok />
-              </a>
-              <a
-                onClick={() => {
-                  setShowInfo(true);
-                }}
-                className="hidden lg:block cursor-pointer border border-transparent rounded overflow-hidden hover:border-[#fa5e4d]"
-              >
-                <BsInfo className="text-[#02c5d5] hover:text-[#fa5e4d] bg-white" />
-              </a>
+              
+          
             </div>
           </div>
           <div className="lg:w-1/3 w-full bg-[#0d132f] flex flex-col text-white p-12 gap-4 text-xs">
@@ -180,7 +168,7 @@ const Footer = () => {
                 className="text-white cursor-pointer text-base hover:text-[#fa5e4d]"
                 onClick={() => redirect("/politica-de-privacidad")}
               >
-                Politica de privacidad
+                Protección de Datos
               </div>
             </div>
           </div>

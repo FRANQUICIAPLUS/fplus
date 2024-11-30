@@ -1,99 +1,32 @@
-import { useEffect, useState } from "react";
-import { FontAwesomeIcon } from "@fortawesome/react-fontawesome";
-import Link from "next/link";
 import Image from "next/image";
-import Bot from "../assets/img-franquicias/Group -20.png";
-import Mas from "../assets/img-franquicias/Group -31.png";
-import Menos from "../assets/img/menosplomo.png";
-import { FaWhatsapp } from "react-icons/fa";
+import Bot from "../assets/img-franquicias/icono_whatsapp.png";
 
 const Chat = () => {
-  const [show, setShow] = useState(false);
+  // Función para redirigir a WhatsApp
+  const handleWhatsAppClick = () => {
+    const phoneNumber = "593999209555"; // Número de WhatsApp
+    const message = "Hola, me interesa más información."; // Mensaje opcional
+    const url = `https://api.whatsapp.com/send/?phone=${phoneNumber}&text=${encodeURIComponent(
+      message
+    )}&app_absent=0`;
+    window.open(url, "_blank"); // Abrir en nueva pestaña
+  };
 
   return (
-    <div className="fixed lg:bottom-5 bottom-[5vh] right-5 z-40">
-      <div className="chatbot relative">
-        {show && (
-          <div className="relative">
-            <div
-              id="negocio-id"
-              className="absolute aspect-square lg:h-[105px] h-24 bg-white rounded-full flex justify-center items-center p-1 bottom-6 -right-1"
-            >
-              <Link
-                className="no-underline flex flex-col items-center justify-center aspect-square h-full text-center rounded-full bg-[#02c7d7]"
-                href="/consultores-de-franquicias"
-              >
-                <p className="text-white text-xs">
-                  Convierte{" "}
-                  <span className="font-bold">
-                    tu negocio en una Franquicia
-                  </span>
-                </p>
-              </Link>
-            </div>
-            <div className="absolute aspect-square lg:h-[105px] h-24 bg-white rounded-full flex justify-center items-center p-1 -bottom-1 right-24">
-              <a
-                href="https://api.whatsapp.com/send/?phone=593999209555&text&app_absent=0"
-                className="no-underline flex flex-col items-center justify-center aspect-square h-full text-center rounded-full text-white bg-[#128c7e]"
-              >
-                <div className="div-wh flex flex-col items-center justify-center">
-                  <FaWhatsapp className="lg:text-2xl text-xl" />
-                  <p className="lg:text-base text-sm">WhatsApp</p>
-                </div>
-              </a>
-            </div>
-            <Link
-              href="/contactanos"
-              className="absolute aspect-square lg:h-[105px] h-24 bg-white rounded-full flex justify-center items-center p-1 -bottom-28 right-32 no-underline"
-            >
-              <div className="flex flex-col items-center justify-center aspect-square h-full text-center rounded-full text-white bg-[#02c7d7]">
-                <div className="text-white text-xs">
-                  Ya tienes una franquicia. <br />
-                  <div className="font-bold">¡Anuncia con nosotros!</div>
-                </div>
-              </div>
-            </Link>
-          </div>
-        )}
-        <div className="relative lg:h-[110px] h-20 -right-0">
-          <div
-            onClick={() => setShow(!show)}
-            className={`cursor-pointer absolute lg:h-[46px] h-8 aspect-square top-1 left-1 rounded-full bg-white hover:bg-[#02c7d7] ${
-              !show && "p-1"
-            }`}
-          >
-            {!show ? (
-              <Image
-                unoptimized
-                draggable={false}
-                src={Mas}
-                alt="chatboot"
-                className="images"
-              />
-            ) : (
-              <Image
-                unoptimized
-                draggable={false}
-                src={Menos}
-                alt="chatboot"
-                className="images h-48"
-              />
-            )}
-          </div>
-          <div
-            id="mas"
-            className="h-full left-0 img-mas-chatboot img-mas-chatboot-bgmas rounded-full"
-          >
-            <Image
-              unoptimized
-              draggable={false}
-              src={Bot}
-              className="images"
-              alt="plusSign"
-              id="plusImage"
-            />
-          </div>
-        </div>
+    <div className="fixed top-1/2 right-5 transform -translate-y-1/2 z-50 flex justify-center items-center">
+      <div
+        onClick={handleWhatsAppClick} // Evento onClick
+        className="cursor-pointer rounded-full bg-[#25D366] p-3 lg:p-4 shadow-lg hover:bg-[#128c7e] transition transform hover:scale-110"
+      >
+        <Image
+          unoptimized
+          draggable={false}
+          src={Bot}
+          alt="WhatsApp Icon"
+          width={50}
+          height={50}
+          className="w-10 h-10 lg:w-12 lg:h-12"
+        />
       </div>
     </div>
   );

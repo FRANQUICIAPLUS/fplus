@@ -35,16 +35,7 @@
             "type": "texto-normal20",
             "content": "IL Barista nace como un emprendimiento de jóvenes apasionados por el café de especialidad. Con la misión de dar a conocer y que la gente pruebe y valore el producto nacional de tan alto nivel que tenemos, el cual se aprecia tanto en el extranjero. Así nace un hermoso emprendimiento que, apoyado en más de 5 años a caficultores, tostadores y baristas dejando en muy alto el nombre del café de especialidad ecuatoriano.",
             "color": "#000"
-        },
-        {
-            "type": "texto-normal20",
-            "content": "Te invitamos a hacer clic en este link para que obtengas mayor información",
-            "color": "#000"
-        },
-        {
-            "type": "enlace20",
-            "content": "https://www.franquiciaplus.com/il-barista",
-            "color": "#0297D7"
         }
+       
     ]
 }

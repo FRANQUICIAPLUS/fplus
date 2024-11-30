@@ -164,16 +164,7 @@
             "type": "texto-normal20",
             "content": "Lo importante es tener los pies en la tierra y darte cuenta de que la decisión de asumir dos riesgos al mismo tiempo: llevar un negocio y pagar un préstamo grande, necesita ser cuidadosamente estudiada.",
             "color": "#000"
-        },
-        {
-            "type": "texto-normal20",
-            "content": "Recuerda que puedes conversar con nuestros asesores para recibir consejos basados en nuestros 15 años de experiencia para ayudarte a emprender y poner en marcha tu negocio de la mejor manera posible. No dudes en contactarnos.",
-            "color": "#000"
-        },
-        {
-            "type": "enlace20",
-            "content": "https://bit.ly/FranquiciaPlus",
-            "color": "#0297D7"
         }
+      
     ]
 }
