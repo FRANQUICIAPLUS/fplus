@@ -148,9 +148,9 @@ const Footer = () => {
               </div>
               <div
                 className="text-white cursor-pointer text-base hover:text-[#fa5e4d]"
-                onClick={() => redirect("/franquicias-en-ecuador/")}
+                onClick={() => redirect("/testimonios/")}
               >
-                Buscar Franquicias
+                Testimonios
               </div>
               <div
                 className="text-white cursor-pointer text-base hover:text-[#fa5e4d]"
@@ -168,7 +168,7 @@ const Footer = () => {
                 className="text-white cursor-pointer text-base hover:text-[#fa5e4d]"
                 onClick={() => redirect("/politica-de-privacidad")}
               >
-                Protección de Datos
+                Politica de privacidad
               </div>
             </div>
           </div>
