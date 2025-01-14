@@ -67,17 +67,9 @@
             "imagen": "/BlogGeneral/julio22.webp",
             "valueCategoria": "Marketing"
         },
+       
         {
             "id": 8,
-            "fecha": "15 / 08 / 2022",
-            "fechaOrdenada": "2022-08-15",
-            "nombre": "Opciones para invertir en Ecuador parte I",
-            "url":"opciones-para-invertir-en-ecuador-parte-i",
-            "imagen": "/BlogGeneral/agosto22.webp",
-            "valueCategoria": "Casos-de-Exito"
-        },
-        {
-            "id": 9,
             "fecha": "15 / 09 / 2022",
             "fechaOrdenada": "2022-09-15",
             "nombre": "La formación del franquiciado para tener un negocio exitoso",
@@ -85,17 +77,9 @@
             "imagen": "/BlogGeneral/septiembre22.webp",
             "valueCategoria": "Noticias"
         },
+        
         {
-            "id": 10,
-            "fecha": "15 / 10 / 2022",
-            "fechaOrdenada": "2022-10-15",
-            "nombre": "Opciones para invertir en Ecuador parte II",
-            "url":"opciones-para-invertir-en-ecuador-parte-ii",
-            "imagen": "/BlogGeneral/octubre22.webp",
-            "valueCategoria": "Casos-de-Exito"
-        },
-        {
-            "id": 11,
+            "id": 9,
             "fecha": "15 / 11 / 2022",
             "fechaOrdenada": "2022-11-15",
             "nombre": "¿Cómo adquirir una franquicia de Sweet & Coffee en Ecuador?",
@@ -104,7 +88,7 @@
             "valueCategoria": "Marketing"
         },
         {
-            "id": 12,
+            "id": 10,
             "fecha": "15 / 12 / 2022",
             "fechaOrdenada": "2022-12-15",
             "nombre": "¿Cómo adquirir una de las franquicias de KFC en Ecuador?",
@@ -113,7 +97,7 @@
             "valueCategoria": "Marketing"
         },
         {
-            "id": 13,
+            "id": 11,
             "fecha": "15 / 01 / 2024",
             "fechaOrdenada": "2024-01-15",
             "nombre": "¿Cómo franquiciar un negocio?",

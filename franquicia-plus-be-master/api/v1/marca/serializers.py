@@ -32,6 +32,7 @@ class MarcaSerializer(serializers.ModelSerializer):
             "titleimagenlogo",
             "categoria",
             "estado",
+            "tipo",
             "ubicacion",
             "directorio",
             "inversion",

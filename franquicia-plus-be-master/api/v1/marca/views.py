@@ -40,15 +40,14 @@ class MarcaViewSet(viewsets.ModelViewSet):
     ordering = ["prioridad", "-created_at"]
     search_fields = ["nombre", "categoria__nombre", "precio"]
     filterset_fields = {
-
         "precio": ["gte", "lte"],
         "categoria__nombre": ["exact"],
         "estado__nombre": ["exact"],
         "ubicacion__nombre": ["exact"],
         "directorio__nombre": ["exact"],
         "inversion__nombre_url": ["exact"],
+        "tipo": ["exact"],  # Add this line to allow filtering by `tipo`
     }
-    logger.debug(filterset_fields)
 
     queryset = (
         Marca.objects.all()
@@ -60,7 +59,6 @@ class MarcaViewSet(viewsets.ModelViewSet):
             "detalle_marca",
         )
     )
-
 
 
 class CategoriaViewSet(viewsets.ModelViewSet):

@@ -62,35 +62,21 @@
                 },
                 {
                     "type": "titulo-lista20",
-                    "content": "- Contar con un capital para inversión de $25.000:",
+                    "content": "- Contar con la inversión requerida:",
                     "color": "#000"
                 },
                 {
                     "type": "texto-lista20",
-                    "content": "Nuestra recomendación es que cuentes con al menos el 50% del capital inicial, y la diferencia la obtengas a través de un préstamo, sociedad o apalancamiento. Hacemos esta sugerencia en base a nuestros años de experiencia, ya que es importante que percibas las ganancias, más no sean destinadas únicamente a pagar el crédito.",
+                    "content": "Nuestra recomendación es que cuentes con al menos 70% del capital inicial, y la diferencia con un préstamo o socio inversionista. Hacemos esta sugerencia en base a nuestros años de experiencia porque es importante no poner en riesgo al negocio desde el inicio y que no recibas utilidades por pagar el crédito.",
                     "color": "#000"
                 },
                 {
                     "type": "texto-lista20",
-                    "content": "Debes tomar en cuenta que el rango de inversión promedio para abrir una franquicia en Ecuador es de $50.000 según el tipo de negocio, aunque las puedes encontrar desde los $7.000 a $80.000, incluso superar el millón de dólares.",
+                    "content": "Debes tomar en cuenta que el rango de inversión promedio para abrir una franquicia en Ecuador es de $30.000 a $100.000 según el tipo de negocio, aunque puedes encontrar muy buenas oportunidades desde $6.000.",
                     "color": "#000"
                 }
             ]
-        },
-        {
-            "type": "texto-normal20",
-            "content": "¿Cumples con la mayoría de requisitos? Felicitaciones, es momento de elegir una franquicia acorde a tu perfil, presupuesto y ubicación.",
-            "color": "#000"
-        },
-        {
-            "type": "texto-normal20",
-            "content": "Con mucho gusto uno de nuestros asesores te acompañará en este proceso, comunícate con nosotros al 0988588901.",
-            "color": "#000"
-        },
-        {
-            "type": "enlace20",
-            "content": "https://bit.ly/FranquiciaPlus",
-            "color": "#0297D7"
         }
+     
     ]
 }

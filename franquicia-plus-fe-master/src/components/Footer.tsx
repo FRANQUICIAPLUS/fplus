@@ -168,7 +168,7 @@ const Footer = () => {
                 className="text-white cursor-pointer text-base hover:text-[#fa5e4d]"
                 onClick={() => redirect("/politica-de-privacidad")}
               >
-                Politica de privacidad
+                Protección de Datos
               </div>
             </div>
           </div>

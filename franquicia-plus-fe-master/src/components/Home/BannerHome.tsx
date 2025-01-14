@@ -23,6 +23,7 @@ export default function BannerHome() {
   const [ubicacionElegida, setUbicacionElegida] = useState<string>("");
   const [categoriaElegida, setCategoriaElegida] = useState<string>("");
   const [inversionElegida, setInversionElegida] = useState<string>("");
+  const [tipo, setTipo] = useState<string>("Business");
 
   useEffect(() => {
     getUbicacion();
@@ -53,51 +54,60 @@ export default function BannerHome() {
   };
 
   const removeThousandsSeparator = (value: string) => {
-    return value.replace(/\./g, '');
+    return value.replace(/\./g, "");
   };
 
-  const filtroBuscar = (category?: string, location?: string, inversion?: string) => {
+  const filtroBuscar = (
+    category?: string,
+    location?: string,
+    inversion?: string,
+    tipo?: string
+  ) => {
     let queryParameters: { [key: string]: string } = {};
 
     // Solo agrega parámetros si tienen valor
     if (category) {
-      queryParameters['categoria'] = category;
+      queryParameters["categoria"] = category;
     }
     if (location) {
-      queryParameters['ubicacion'] = location;
+      queryParameters["ubicacion"] = location;
     }
-    console.log(inversion);
+    if (tipo) {
+      queryParameters["tipo"] = tipo;
+    }
 
     if (inversion) {
-        // Si el valor de inversión es '120.000'
-        if (inversion === '120.000') {
-          queryParameters['precio__gte'] = '120000';
-          queryParameters['precio__lte'] = '10000000000000000000000';
-        } else {
-          // Separar el rango por guión y usar los valores adecuados
-          const [minPrice, , maxPrice] = inversion.split('-');
-  
-          // Para la petición interna, necesitamos remover los puntos
-          const minPriceClean = removeThousandsSeparator(minPrice);
-          const maxPriceClean = removeThousandsSeparator(maxPrice);
-  
-          // Modificar los valores solo para la petición interna
-          queryParameters['precio__gte'] = minPriceClean;
-          queryParameters['precio__lte'] = maxPriceClean;
-        }
+      // Si el valor de inversión es '120.000'
+      if (inversion === "120.000") {
+        queryParameters["precio__gte"] = "120000";
+        queryParameters["precio__lte"] = "10000000000000000000000";
+      } else {
+        // Separar el rango por guión y usar los valores adecuados
+        const [minPrice, , maxPrice] = inversion.split("-");
 
+        // Para la petición interna, necesitamos remover los puntos
+        const minPriceClean = removeThousandsSeparator(minPrice);
+        const maxPriceClean = removeThousandsSeparator(maxPrice);
 
-
+        // Modificar los valores solo para la petición interna
+        queryParameters["precio__gte"] = minPriceClean;
+        queryParameters["precio__lte"] = maxPriceClean;
+      }
     }
-    console.log(queryParameters)
+    console.log(queryParameters);
     // Crea la querystring a partir de los parámetros válidos
     const queryString = new URLSearchParams(queryParameters).toString();
-    const targetUrl = `/franquicias-en-ecuador${queryString ? `?${queryString}` : ''}`;
-
+    const targetUrl = `/franquicias-en-ecuador${
+      queryString ? `?${queryString}` : ""
+    }`;
 
     router.push(targetUrl);
   };
 
+  const TIPO_CHOICES = [
+    { text: "Negocio", code: "Business" },
+    { text: "Franquicia", code: "Franchise" },
+  ];
 
   return (
     <section
@@ -231,7 +241,7 @@ export default function BannerHome() {
           style={{ boxShadow: "0.125em 1.5em 1.25em 0 #00000063" }}
           className="absolute w-[80%] h-[23em] lg:w-[60em] lg:h-[6em] top-[450px] lg:top-[480px] lg:bottom-0 -bottom-52 z-[2] bg-white mx-auto my-0 p-[5px] rounded-[1.5719em] border-[black]"
         >
-          <div className="flex w-full h-full gap-[28px] lg:gap-[48px] px-2 lg:px-8 lg:flex-row flex-col items-center lg:justify-evenly justify-center lg:ml-4 lg:mr-4">
+          <div className="flex w-full h-full gap-[28px] lg:gap-[48px] px-2 lg:px-8 lg:flex-row flex-col items-center lg:justify-evenly justify-center lg:ml-4 lg:mr-4 relative">
             <div className="w-full mt-0 lg:flex lg:justify-center lg:px-[5px]">
               <select
                 value={ubicacionElegida}
@@ -280,6 +290,27 @@ export default function BannerHome() {
                 ))}
               </select>
             </div>
+
+            <div className="w-full mt-0 absolute -top-12 -left-3">
+              {TIPO_CHOICES.map((item, index) => (
+                <label
+                  key={index}
+                  className={`inline-block text-2xl lg:text-base px-8 py-[6px] rounded-lg ms-2 border border-gray-200 cursor-pointer ${
+                    tipo === item.code ? "bg-[#cccccc]" : "bg-white"
+                  }`}
+                >
+                  <input
+                    type="radio"
+                    name="tipo"
+                    value={item.code}
+                    onChange={(e) => setTipo(e.target.value)}
+                    className="mr-2 appearance-none  bg-white hidden"
+                  />
+                  {item.text}
+                </label>
+              ))}
+            </div>
+
             <div className="w-full h-[2.125em] lg:h-full flex items-center justify-center mt-4 lg:mt-0">
               <button
                 type="button"
@@ -287,7 +318,8 @@ export default function BannerHome() {
                   filtroBuscar(
                     categoriaElegida,
                     ubicacionElegida,
-                    inversionElegida
+                    inversionElegida,
+                    tipo
                   )
                 }
                 style={{ fontFamily: "Mukata Mahee Regular" }}

@@ -86,16 +86,7 @@
             "type": "texto-normal20",
             "content": "Esta evaluación de ambas partes nos permite entender a profundidad el giro de negocio y las habilidades y competencias que debe tener el franquiciado, para conectarse con un negocio que lo apasione y sea sostenible en el tiempo, incrementando sus probabilidades de crecimiento y retorno de la inversión a un plazo conveniente.",
             "color": "#000"
-        },
-        {
-            "type": "texto-normal20",
-            "content": "Si deseas certificarte como franquiciado calificado comunícate con nosotros para iniciar el proceso. Recuerda que este paso no tiene ningún costo. Comunícate con nosotros a este link de whatsapp",
-            "color": "#000"
-        },
-        {
-            "type": "enlace20",
-            "content": "https://bit.ly/FranquiciaPlus",
-            "color": "#0297D7"
         }
+       
     ]
 }

@@ -43,6 +43,7 @@ const BrandsPageComponent = ({
   const [selectedInversion, setSelectedInversion] = useState("");
   const [selectedPrecioMin, setSelectedPrecioMin] = useState("");
   const [selectedPrecioMax, setSelectedPrecioMax] = useState("");
+  const [selectedTipo, setSelectedTipo] = useState("");
   const [, setSelectedState] = useState("");
   const [, setSelectedDirectory] = useState("");
   const [charge, setCharge] = useState(true);
@@ -80,6 +81,9 @@ const BrandsPageComponent = ({
     const precio_min_sel = searchParams.get("precio__gte");
     if (precio_min_sel) setSelectedPrecioMin(precio_min_sel);
 
+    const tipo = searchParams.get("tipo");
+    if (tipo) setSelectedTipo(tipo);
+
     const precio_max_sel = searchParams.get("precio__lte");
     if (precio_max_sel) setSelectedPrecioMax(precio_max_sel);
 
@@ -93,6 +97,7 @@ const BrandsPageComponent = ({
           directorio__nombre: directorio,
           precio__gte: precio_min_sel,
           precio__lte: precio_max_sel,
+          tipo: tipo,
         },
       });
       setMarcas(response.data);
@@ -118,6 +123,7 @@ const BrandsPageComponent = ({
           inversion__nombre: selectedInversion,
           precio__gte: selectedPrecioMin,
           precio__lte: selectedPrecioMax,
+          tipo: selectedTipo,
         },
       });
       setMarcas(response.data);
@@ -130,32 +136,53 @@ const BrandsPageComponent = ({
 
   useEffect(() => {
     let sectors = "";
-  
-    if (selectedCategory || selectedUbication || selectedPrecioMax || selectedPrecioMin || selectedInversion) {
+
+    if (
+      selectedCategory ||
+      selectedUbication ||
+      selectedPrecioMax ||
+      selectedPrecioMin ||
+      selectedInversion ||
+      selectedTipo
+    ) {
       sectors += "?";
-      if (selectedCategory) sectors += `categoria=${encodeURIComponent(selectedCategory)}&`;
-      if (selectedUbication) sectors += `ubicacion=${encodeURIComponent(selectedUbication)}&`;
+      if (selectedCategory)
+        sectors += `categoria=${encodeURIComponent(selectedCategory)}&`;
+      if (selectedUbication)
+        sectors += `ubicacion=${encodeURIComponent(selectedUbication)}&`;
+      if (selectedTipo) sectors += `tipo=${encodeURIComponent(selectedTipo)}&`;
       const parsedInversion = selectedInversion.split("-");
       if (parsedInversion.length === 3) {
-        parsedInversion[1] = parsedInversion[2]
+        parsedInversion[1] = parsedInversion[2];
         parsedInversion.pop();
-        const [minPrice, maxPrice] = parsedInversion.map(price => removeThousandsSeparator(price));
-        sectors+= `precio__gte=${encodeURIComponent(minPrice)}&`;
-        sectors+= `precio__lte=${encodeURIComponent(maxPrice)}&`;
+        const [minPrice, maxPrice] = parsedInversion.map((price) =>
+          removeThousandsSeparator(price)
+        );
+        sectors += `precio__gte=${encodeURIComponent(minPrice)}&`;
+        sectors += `precio__lte=${encodeURIComponent(maxPrice)}&`;
       } else if (selectedInversion === "120.000") {
-        sectors+= `precio__gte=120000&precio__lte=10000000000000000000000&`;
+        sectors += `precio__gte=120000&precio__lte=10000000000000000000000&`;
       } else {
-        if (selectedPrecioMin) sectors += `precio__gte=${encodeURIComponent(selectedPrecioMin)}&`;
-      if (selectedPrecioMax) sectors += `precio__lte=${encodeURIComponent(selectedPrecioMax)}&`;
+        if (selectedPrecioMin)
+          sectors += `precio__gte=${encodeURIComponent(selectedPrecioMin)}&`;
+        if (selectedPrecioMax)
+          sectors += `precio__lte=${encodeURIComponent(selectedPrecioMax)}&`;
       }
-  
+
       sectors = sectors.slice(0, -1); // Remove trailing "&"
     }
-  
+
     const targetUrl = `/franquicias-en-ecuador${sectors}`;
     router.push(targetUrl);
-  }, [selectedCategory, selectedInversion, selectedUbication, selectedPrecioMax, selectedPrecioMin]);
-  
+  }, [
+    selectedCategory,
+    selectedInversion,
+    selectedUbication,
+    selectedPrecioMax,
+    selectedPrecioMin,
+    selectedTipo,
+  ]);
+
   return (
     <>
       <section>
@@ -179,10 +206,16 @@ const BrandsPageComponent = ({
             </div>
             <div className="absolute top-0 bottom-0 lg:left-[80px] left-[60px] flex flex-col text-start text-white justify-center items-start">
               {/* Heading text */}
-              <div className="text-5xl lg:block hidden font-bold" style={{ fontFamily: "Mukata Mahee Bold" }}>
+              <div
+                className="text-5xl lg:block hidden font-bold"
+                style={{ fontFamily: "Mukata Mahee Bold" }}
+              >
                 Invierte en una marca <br /> rentable y comprobada
               </div>
-              <div className="lg:hidden block text-3xl font-bold" style={{ fontFamily: "Mukata Mahee Bold" }}>
+              <div
+                className="lg:hidden block text-3xl font-bold"
+                style={{ fontFamily: "Mukata Mahee Bold" }}
+              >
                 Invierte en una <br />
                 marca <br />
                 rentable y <br />
@@ -209,11 +242,13 @@ const BrandsPageComponent = ({
             setSelectedUbication={setSelectedUbication}
             selectedInversion={selectedInversion}
             setSelectedInversion={setSelectedInversion}
+            setSelectedTipo={setSelectedTipo}
             directorios={directorios}
             estados={estado}
             ubicacion={ubicacion}
             categoria={categoria}
             inversion={inversion}
+            tipo={selectedTipo}
           />
           <div className="flex w-full justify-center px-4">
             {charge ? (
@@ -243,7 +278,9 @@ const BrandsPageComponent = ({
                   newPage(Math.max(currentPage - 1, 1));
                 }}
                 className={`text-5xl w-12 aspect-square ${
-                  currentPage === 1 ? "text-transparent" : "rounded-full text-[#fa5e4d] hover:bg-slate-200 cursor-pointer"
+                  currentPage === 1
+                    ? "text-transparent"
+                    : "rounded-full text-[#fa5e4d] hover:bg-slate-200 cursor-pointer"
                 }`}
               >
                 <IoIosArrowBack />
@@ -256,7 +293,9 @@ const BrandsPageComponent = ({
                     newPage(index + 1);
                   }}
                   className={`relative flex justify-center items-center border text-2xl w-12 aspect-square rounded-full cursor-pointer ${
-                    currentPage === index + 1 ? "bg-[#fa5e4d] text-white" : "hover:bg-slate-200"
+                    currentPage === index + 1
+                      ? "bg-[#fa5e4d] text-white"
+                      : "hover:bg-slate-200"
                   }`}
                 >
                   {index + 1}
@@ -268,7 +307,9 @@ const BrandsPageComponent = ({
                   newPage(Math.min(currentPage + 1, totalPages));
                 }}
                 className={`text-5xl w-12 aspect-square ${
-                  currentPage === totalPages ? "text-transparent" : "rounded-full text-[#fa5e4d] hover:bg-slate-200 cursor-pointer"
+                  currentPage === totalPages
+                    ? "text-transparent"
+                    : "rounded-full text-[#fa5e4d] hover:bg-slate-200 cursor-pointer"
                 }`}
               >
                 <IoIosArrowForward />

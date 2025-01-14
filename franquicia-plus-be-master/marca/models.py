@@ -434,11 +434,22 @@ class Detalle_Marca(models.Model):
 
 
 class Marca(models.Model):
+    TIPO_CHOICES = [
+        ('Franchise', 'Franquicia'),
+        ('Business', 'Negocio'),
+    ]
     created_at = models.DateTimeField(auto_now_add=True)
     nombre = models.CharField(max_length=30, unique=True, verbose_name="Nombre")
     precio = models.IntegerField(verbose_name="Precio", default=0)
     inversion = models.ForeignKey(
         Inversion, on_delete=models.CASCADE, verbose_name="Rango de Inversión"
+    )
+    tipo = models.CharField(
+        max_length=10,
+        choices=TIPO_CHOICES,
+        default='Franchise',
+        verbose_name="Tipo",
+        help_text="Seleccione si es una franquicia o un negocio."
     )
     descripcion = models.TextField(
         max_length=160,

@@ -16,11 +16,13 @@ interface Props {
   setSelectedUbication: (value: string) => void;
   selectedInversion: string;
   setSelectedInversion: (value: string) => void;
+  setSelectedTipo: (value: string) => void;
   directorios: Sector[];
   estados: Sector[];
   ubicacion: Sector[];
   categoria: Sector[];
   inversion: Inversion[];
+  tipo: any;
 }
 
 const BrandsFilter = ({
@@ -30,13 +32,18 @@ const BrandsFilter = ({
   setSelectedUbication,
   selectedInversion,
   setSelectedInversion,
+  setSelectedTipo,
   directorios,
   estados,
   ubicacion,
   categoria,
   inversion,
+  tipo,
 }: Props) => {
-
+  const TIPO_CHOICES = [
+    { text: "Franquicia", code: "Franchise" },
+    { text: "Negocio", code: "Business" },
+  ];
   return (
     <div className="w-[30%] lg:flex hidden flex-col gap-y-4 relative">
       <div className="text-lg ml-4">Buscar otro sector</div>
@@ -77,6 +84,21 @@ const BrandsFilter = ({
           {inversion.map((inv) => (
             <option key={inv.id} value={inv.nombre_url}>
               {inv.nombre}
+            </option>
+          ))}
+        </select>
+        <select
+          value={tipo}
+          onChange={(e) => setSelectedTipo(e.target.value)}
+          className="sector-select"
+          name="inversion"
+        >
+          <option value="" selected>
+            Tipo
+          </option>
+          {TIPO_CHOICES.map((tipo, index) => (
+            <option key={index} value={tipo.code}>
+              {tipo.text}
             </option>
           ))}
         </select>

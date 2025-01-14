@@ -91,16 +91,7 @@
             "type": "texto-normal20",
             "content": "Para finalizar, toma en cuenta que ningún contrato asegura el éxito o rentabilidad de un negocio, lograrlo implica trabajo y esfuerzo, como todo aquello que vale la pena.",
             "color": "#000"
-        },
-        {
-            "type": "texto-normal20",
-            "content": "Recuerda que si estás pensando en invertir en una franquicia y quieres asesoría en el proceso, puedes contactarte con nosotros en el siguiente link:",
-            "color": "#000"
-        },
-        {
-            "type": "enlace20",
-            "content": "https://bit.ly/FranquiciaPlus",
-            "color": "#0297D7"
         }
+       
     ]
 }

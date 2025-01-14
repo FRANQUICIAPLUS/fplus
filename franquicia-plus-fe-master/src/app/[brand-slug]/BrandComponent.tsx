@@ -31,6 +31,7 @@ import { toast } from "react-toastify";
 import { Sector } from "@/types/Sector";
 import { NextResponse } from "next/server";
 import { CgSpinnerTwoAlt } from "react-icons/cg";
+import { Inversion } from "@/types/Inversion";
 
 const getUbications = async () => {
   const { data } = await axios.get("/api/v1/ubicacion/");
@@ -41,16 +42,56 @@ interface props {
   detalleMarca: DetalleMarca;
 }
 const countries = [
-  { name: 'Ecuador', code: '+593', flag: 'https://upload.wikimedia.org/wikipedia/commons/9/96/Flag_of_Ecuador.png' },
-  { name: 'Argentina', code: '+54', flag: 'https://upload.wikimedia.org/wikipedia/commons/1/1a/Flag_of_Argentina.svg' },
-  { name: 'Brasil', code: '+55', flag: 'https://upload.wikimedia.org/wikipedia/commons/0/05/Flag_of_Brazil.svg' },
-  { name: 'Colombia', code: '+57', flag: 'https://upload.wikimedia.org/wikipedia/commons/2/21/Flag_of_Colombia.svg' },
-  { name: 'México', code: '+52', flag: 'https://upload.wikimedia.org/wikipedia/commons/f/fc/Flag_of_Mexico.svg' },
-  { name: 'Perú', code: '+51', flag: 'https://upload.wikimedia.org/wikipedia/commons/c/cf/Flag_of_Peru.svg' },
-  { name: 'Usa', code: '+1', flag: 'https://upload.wikimedia.org/wikipedia/commons/a/a4/Flag_of_the_United_States.svg' },
-  { name: 'Francia', code: '+33', flag: 'https://upload.wikimedia.org/wikipedia/commons/a/a4/Flag_of_the_United_States.svg' },
-  { name: 'Italia', code: '+39', flag: 'https://upload.wikimedia.org/wikipedia/commons/0/03/Flag_of_Italy.svg' },
-  { name: 'España', code: '+34', flag: 'https://upload.wikimedia.org/wikipedia/commons/7/70/Flag_of_Spain_%28civil%29.svg' },
+  {
+    name: "Ecuador",
+    code: "+593",
+    flag: "https://upload.wikimedia.org/wikipedia/commons/9/96/Flag_of_Ecuador.png",
+  },
+  {
+    name: "Argentina",
+    code: "+54",
+    flag: "https://upload.wikimedia.org/wikipedia/commons/1/1a/Flag_of_Argentina.svg",
+  },
+  {
+    name: "Brasil",
+    code: "+55",
+    flag: "https://upload.wikimedia.org/wikipedia/commons/0/05/Flag_of_Brazil.svg",
+  },
+  {
+    name: "Colombia",
+    code: "+57",
+    flag: "https://upload.wikimedia.org/wikipedia/commons/2/21/Flag_of_Colombia.svg",
+  },
+  {
+    name: "México",
+    code: "+52",
+    flag: "https://upload.wikimedia.org/wikipedia/commons/f/fc/Flag_of_Mexico.svg",
+  },
+  {
+    name: "Perú",
+    code: "+51",
+    flag: "https://upload.wikimedia.org/wikipedia/commons/c/cf/Flag_of_Peru.svg",
+  },
+  {
+    name: "Usa",
+    code: "+1",
+    flag: "https://upload.wikimedia.org/wikipedia/commons/a/a4/Flag_of_the_United_States.svg",
+  },
+  {
+    name: "Francia",
+    code: "+33",
+    flag: "https://upload.wikimedia.org/wikipedia/commons/a/a4/Flag_of_the_United_States.svg",
+  },
+  {
+    name: "Italia",
+    code: "+39",
+    flag: "https://upload.wikimedia.org/wikipedia/commons/0/03/Flag_of_Italy.svg",
+  },
+  {
+    name: "España",
+    code: "+34",
+    flag: "https://upload.wikimedia.org/wikipedia/commons/7/70/Flag_of_Spain_%28civil%29.svg",
+  },
   {
     name: "United States",
     code: "+1",
@@ -225,16 +266,33 @@ const BrandComponent = ({ detalleMarca }: props) => {
   const [email, setEmail] = useState("");
   const [message, setMessage] = useState("");
   const [brand, setBrand] = useState("");
-  const [phoneCode, setPhoneCode] = useState('+593'); // Có
-  const [flag, setFlag] = useState('https://upload.wikimedia.org/wikipedia/commons/9/96/Flag_of_Ecuador.png'); // Bandera inicial de Ecuador
+  const [phoneCode, setPhoneCode] = useState("+593"); // Có
+  const [flag, setFlag] = useState(
+    "https://upload.wikimedia.org/wikipedia/commons/9/96/Flag_of_Ecuador.png"
+  ); // Bandera inicial de Ecuador
   const router = useRouter();
   const pathname = usePathname();
 
+  const [inversion, setInversion] = useState<Inversion[]>([]);
 
+  const [inversionElegida, setInversionElegida] = useState<string>("");
+
+  const getInversion = async () => {
+    const response = await axios.get("/api/v1/inversion/");
+    setInversion(response.data);
+  };
+
+  useEffect(() => {
+    getInversion();
+  }, []);
+
+  const handleInversionChange = (e: any) => {
+    setInversionElegida(e.target.value);
+  };
   const handleCountryChange = (e: any) => {
     const selectedCountry = e.target.value;
     setCountry(selectedCountry);
-    console.log(selectedCountry)
+    console.log(selectedCountry);
 
     // Buscar los datos del país seleccionado (código y bandera)
     const selectedCountryData = countries.find(
@@ -242,18 +300,18 @@ const BrandComponent = ({ detalleMarca }: props) => {
     );
 
     if (selectedCountryData) {
-      console.log(selectedCountryData)
+      console.log(selectedCountryData);
       setPhoneCode(selectedCountryData.code); // Actualiza el código de teléfono
-      setFlag(selectedCountryData.flag);     // Actualiza la bandera
-      setPhone(selectedCountryData.code);    // Inicializa el campo de teléfono con el nuevo código
-      setPhone2("")
+      setFlag(selectedCountryData.flag); // Actualiza la bandera
+      setPhone(selectedCountryData.code); // Inicializa el campo de teléfono con el nuevo código
+      setPhone2("");
     }
   };
 
   const handlePhoneChange = (e: any) => {
     // const phoneValue = e.target.value.replace(phoneCode, ''); // Eliminar el código al editar
     setPhone(`${phoneCode}${e.target.value}`); // Mantener el código y actualizar el número
-    setPhone2(e.target.value)
+    setPhone2(e.target.value);
   };
 
   useEffect(() => {
@@ -270,7 +328,8 @@ const BrandComponent = ({ detalleMarca }: props) => {
       country !== "" &&
       province !== "" &&
       brand !== "" &&
-      message !== ""
+      message !== "" &&
+      inversionElegida !== ""
     ) {
       let parametrosn =
         "nombre=" +
@@ -280,7 +339,8 @@ const BrandComponent = ({ detalleMarca }: props) => {
         "&pais=" +
         country +
         "&provincia=" +
-        province + "abc" +
+        province +
+        "abc" +
         "&telefono=" +
         phone +
         "&email=" +
@@ -288,15 +348,17 @@ const BrandComponent = ({ detalleMarca }: props) => {
         "&comentarios=" +
         message +
         "&nombremarca=" +
-        brand;
+        brand +
+        "&inversion=" +
+        inversionElegida;
 
       const response = axios.post("/marca/send_email/", parametrosn, {
         headers: {
           "Content-Type": "application/x-www-form-urlencoded",
-          "Authorization": "Bearer 123456",
+          Authorization: "Bearer 123456",
         },
       });
-      console.log(phone)
+      console.log(phone);
       axios
         .post("https://api.escala.com/new-lead/", {
           contact_first_name: name,
@@ -306,6 +368,7 @@ const BrandComponent = ({ detalleMarca }: props) => {
           contact_email: email,
           cf_contact_comentario_aycp_text: message,
           account_name: brand,
+          contact_inversion: inversionElegida,
           nm__wfzewcpo: brand,
           form_id: "8689a576-ae58-11ee-9c93-22ce4c57bdd0",
           form_name: "Marcas",
@@ -454,7 +517,6 @@ const BrandComponent = ({ detalleMarca }: props) => {
           );
         });
     }
-
   };
 
   useEffect(() => {
@@ -465,8 +527,9 @@ const BrandComponent = ({ detalleMarca }: props) => {
   const CustomDot = ({ index, onClick, active }: DotProps) => {
     return (
       <li
-        className={`block lg:hidden w-3 mx-2 cursor-pointer aspect-square rounded-full ${active ? "bg-black" : "bg-[#d6d6d6]"
-          }`}
+        className={`block lg:hidden w-3 mx-2 cursor-pointer aspect-square rounded-full ${
+          active ? "bg-black" : "bg-[#d6d6d6]"
+        }`}
         onClick={() => onClick!()}
       ></li>
     );
@@ -558,11 +621,13 @@ const BrandComponent = ({ detalleMarca }: props) => {
     },
     {
       title: "¿Valor de Renovación?",
-      value: Number(brandDetails?.valor_renovacion).toLocaleString("en-US", {
-        style: "currency",
-        currency: "USD",
-        maximumFractionDigits: 0,
-      }).replace(",", "."),
+      value: Number(brandDetails?.valor_renovacion)
+        .toLocaleString("en-US", {
+          style: "currency",
+          currency: "USD",
+          maximumFractionDigits: 0,
+        })
+        .replace(",", "."),
     },
     {
       title: "Metros local",
@@ -875,11 +940,13 @@ const BrandComponent = ({ detalleMarca }: props) => {
                 </div>
                 <div className="flex justify-center">
                   <p className="text-[#47505a] leading-[2.75rem] text-[2.8125em] text-center">
-                    {Number(brandDetails?.valor_marca).toLocaleString("en-US", {
-                      style: "currency",
-                      currency: "USD",
-                      maximumFractionDigits: 0,
-                    }).replace(",", ".")}
+                    {Number(brandDetails?.valor_marca)
+                      .toLocaleString("en-US", {
+                        style: "currency",
+                        currency: "USD",
+                        maximumFractionDigits: 0,
+                      })
+                      .replace(",", ".")}
                   </p>
                 </div>
                 <div className="flex justify-center pt-[0.75em]">
@@ -918,13 +985,13 @@ const BrandComponent = ({ detalleMarca }: props) => {
                           {" "}
                           <span className="text-[#47505a] text-[2.125em]">
                             {" "}
-                            {Number(
-                              brandDetails?.valor_franquicia
-                            ).toLocaleString("en-US", {
-                              style: "currency",
-                              currency: "USD",
-                              maximumFractionDigits: 0,
-                            }).replace(",", ".")}
+                            {Number(brandDetails?.valor_franquicia)
+                              .toLocaleString("en-US", {
+                                style: "currency",
+                                currency: "USD",
+                                maximumFractionDigits: 0,
+                              })
+                              .replace(",", ".")}
                           </span>
                         </p>
                       </div>
@@ -947,13 +1014,13 @@ const BrandComponent = ({ detalleMarca }: props) => {
                           {" "}
                           <span className="text-[#47505a] text-[2.125em]">
                             {" "}
-                            {Number(
-                              brandDetails?.valor_adecuacion_local
-                            ).toLocaleString("en-US", {
-                              style: "currency",
-                              currency: "USD",
-                              maximumFractionDigits: 0,
-                            }).replace(",", ".")}
+                            {Number(brandDetails?.valor_adecuacion_local)
+                              .toLocaleString("en-US", {
+                                style: "currency",
+                                currency: "USD",
+                                maximumFractionDigits: 0,
+                              })
+                              .replace(",", ".")}
                           </span>
                         </p>
                       </div>
@@ -962,31 +1029,33 @@ const BrandComponent = ({ detalleMarca }: props) => {
                 </div>
                 <div className="flex justify-center mt-[1rem] pb-[3rem]">
                   <div className="w-[90%]">
-                    {whiteBoxes.map((box, index) => (
-                      <div
-                        key={index}
-                        className="inline-block px-[1.25em] pb-[0.625em] pt-[1.25em] lg:w-[20%] w-[50%]"
-                      >
-                        <div className="h-[30%]">
-                          <p
-                            style={{ fontFamily: "Mukata Mahee Bold" }}
-                            className="lg:text-[1em] text-xs pb-[0.3125em] pl-[0.625em] text-[#47505a] italic"
-                          >
-                            {box.title}
-                          </p>
-                        </div>
-                        <div className="bg-white rounded-lg h-[40px] w-full">
-                          <div className="flex items-center h-full">
+                    <div className="flex flex-wrap justify-between">
+                      {whiteBoxes.map((box, index) => (
+                        <div
+                          key={index}
+                          className="px-[1.25em] pb-[0.625em] pt-[1.25em] lg:w-[30%] md:w-[45%] w-full"
+                        >
+                          <div className="h-[30%]">
                             <p
                               style={{ fontFamily: "Mukata Mahee Bold" }}
-                              className="lg:text-[1.125em] text-xs pl-[0.625em] text-[#47505a] italic"
+                              className="lg:text-[1em] text-xs pb-[0.3125em] pl-[0.625em] text-[#47505a] italic"
                             >
-                              {box.value}
+                              {box.title}
                             </p>
                           </div>
+                          <div className="bg-white rounded-lg h-[40px] w-full">
+                            <div className="flex items-center h-full">
+                              <p
+                                style={{ fontFamily: "Mukata Mahee Bold" }}
+                                className="lg:text-[1.125em] text-xs pl-[0.625em] text-[#47505a] italic"
+                              >
+                                {box.value}
+                              </p>
+                            </div>
+                          </div>
                         </div>
-                      </div>
-                    ))}
+                      ))}
+                    </div>
                   </div>
                 </div>
               </div>
@@ -1028,7 +1097,7 @@ const BrandComponent = ({ detalleMarca }: props) => {
                 <div className="lg:w-[60%] w-[90%]">
                   <form onSubmit={handleSubmit}>
                     <div className="flex lg:flex-wrap lg:flex-row flex-col">
-                      <div className="form-group lg:w-1/2 w-full py-2 px-2">
+                      <div className="form-group lg:w-1/3 w-full py-2 px-2">
                         <input
                           type="text"
                           className="form-control"
@@ -1039,7 +1108,7 @@ const BrandComponent = ({ detalleMarca }: props) => {
                           required
                         />
                       </div>
-                      <div className="form-group lg:w-1/2 w-full py-2 px-2">
+                      <div className="form-group lg:w-1/3 w-full py-2 px-2">
                         <input
                           type="text"
                           className="form-control"
@@ -1050,9 +1119,23 @@ const BrandComponent = ({ detalleMarca }: props) => {
                           required
                         />
                       </div>
+                      <div className="form-group lg:w-1/3 w-full py-2 px-2">
+                        <select
+                          value={inversionElegida}
+                          onChange={handleInversionChange}
+                          className="card-select inline-block text-2xl lg:text-base"
+                        >
+                          <option value="" selected>
+                            Inversión
+                          </option>
+                          {inversion.map((inv, index) => (
+                            <option key={index} value={inv.nombre_url}>
+                              {inv.nombre}
+                            </option>
+                          ))}
+                        </select>
+                      </div>
                       {/* País de Interés (Ahora ocupa toda la fila) */}
-
-
 
                       {/* Comentado - No borrar */}
                       {/*
@@ -1104,7 +1187,11 @@ const BrandComponent = ({ detalleMarca }: props) => {
                               ))}
                             </select>
                             <div className="flex items-center gap-2">
-                              <img src={flag} alt={`${country} Flag`} className="w-6 h-4" />
+                              <img
+                                src={flag}
+                                alt={`${country} Flag`}
+                                className="w-6 h-4"
+                              />
                               <span className="text-md">{phoneCode}</span>
                               <input
                                 type="text"
@@ -1149,7 +1236,9 @@ const BrandComponent = ({ detalleMarca }: props) => {
                       name="nombremarca"
                       type="hidden"
                       value={brand}
-                      onChange={(e: any) => setBrand(brandDetails?.nombre || "")}
+                      onChange={(e: any) =>
+                        setBrand(brandDetails?.nombre || "")
+                      }
                     />
                     <div className="flex justify-center py-12 mb-10">
                       <button

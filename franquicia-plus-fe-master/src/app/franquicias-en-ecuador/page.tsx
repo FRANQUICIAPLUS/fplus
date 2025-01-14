@@ -12,7 +12,6 @@ const BrandsPage = async () => {
 
   if (!categoria || !ubicacion || !inversion || !directorio || !estado) {
     return <ErrorPage />;
-
   }
 
   return (
