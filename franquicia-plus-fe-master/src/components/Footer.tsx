@@ -102,6 +102,15 @@ const Footer = () => {
               >
                 <FaYoutube />
               </a>
+
+              <a
+                onClick={() => {
+                  setShowInfo(true);
+                }}
+                className="hidden lg:block cursor-pointer border border-transparent rounded overflow-hidden hover:border-[#fa5e4d]"
+              >
+                <BsInfo className="text-[#02c5d5] hover:text-[#fa5e4d] bg-white" />
+              </a>
               
           
             </div>
@@ -148,9 +157,9 @@ const Footer = () => {
               </div>
               <div
                 className="text-white cursor-pointer text-base hover:text-[#fa5e4d]"
-                onClick={() => redirect("/franquicias-en-ecuador/")}
+                onClick={() => redirect("/testimonios/")}
               >
-                Buscar Franquicias
+                Testimonios
               </div>
               <div
                 className="text-white cursor-pointer text-base hover:text-[#fa5e4d]"
@@ -168,7 +177,7 @@ const Footer = () => {
                 className="text-white cursor-pointer text-base hover:text-[#fa5e4d]"
                 onClick={() => redirect("/politica-de-privacidad")}
               >
-                Protección de Datos
+                Politica de privacidad
               </div>
             </div>
           </div>

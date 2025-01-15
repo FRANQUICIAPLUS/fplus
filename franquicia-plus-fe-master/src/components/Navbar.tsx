@@ -224,6 +224,12 @@ const Navbar = () => {
               </div>
               <div
                 className="cursor-pointer text-white text-xl lg:text-4xl"
+                onClick={() => redirect("/testimonios")}
+              >
+                Testimonios
+              </div>
+              <div
+                className="cursor-pointer text-white text-xl lg:text-4xl"
                 onClick={() => redirect("/blog")}
               >
                 Blogs y Noticias
