@@ -135,7 +135,7 @@ const Footer = () => {
             </div>
           </div>
           <div className="lg:w-1/3 w-full bg-[#0d132f] flex flex-col text-white p-12 gap-4 text-sm">
-            <div className="text-3xl">Acerca de</div>
+            <div className="text-3xl">Menú</div>
             <div className="flex flex-col">
               <div
                 className="text-white cursor-pointer text-base hover:text-[#fa5e4d]"

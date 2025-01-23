@@ -22,13 +22,16 @@ import Footer from "@/components/Footer";
 import Navbar from "@/components/Navbar";
 import { Marcas } from "@/types/Marcas";
 import MarcaCard from "../Marca/MarcaCard";
+import { CgSpinnerTwoAlt } from "react-icons/cg";
 
 interface props {
-  popularBrands: Marcas;
-  newBrands: Marcas;
+  popBrands: Marcas;
+  Brands: Marcas;
 }
-const HomePageComponent = ({ popularBrands, newBrands }: props) => {
+const HomePageComponent = ({ popBrands, Brands }: props) => {
   const [isAtBottom, setIsAtBottom] = useState(false);
+  const [popularBrands, setPopularBrands] = useState(popBrands);
+  const [newBrands, setNewBrands] = useState(Brands);
   const [categories] = useState([
     { id: "Todo", value: "Todo", icon: faTableCellsLarge },
     { id: "Restaurantes", value: "Restaurantes", icon: faUtensils },
@@ -36,6 +39,9 @@ const HomePageComponent = ({ popularBrands, newBrands }: props) => {
     { id: "Servicios", value: "Servicios", icon: faBriefcase },
   ]);
   const [selectedCategory, setSelectedCategory] = useState("Todo");
+  const [selectedTipo, setselectedTipo] = useState("");
+  
+  const [loading, setLoading] = useState(false);
 
   useEffect(() => {
     AOS.init();
@@ -46,7 +52,7 @@ const HomePageComponent = ({ popularBrands, newBrands }: props) => {
       if (
         window.scrollY > 100 &&
         window.scrollY <
-        document.documentElement.scrollHeight - window.innerHeight - 100
+          document.documentElement.scrollHeight - window.innerHeight - 100
       ) {
         setIsAtBottom(false);
       } else {
@@ -68,13 +74,68 @@ const HomePageComponent = ({ popularBrands, newBrands }: props) => {
     searchBox?.scrollIntoView({ block: "end", behavior: "smooth" });
   };
 
+  const getPopularBrands = async () => {
+    try {
+      const url = `${process.env.NEXT_PUBLIC_BACKEND_BASE_URL}/api/v1/marcas/?page_size=99&estado__nombre=Premium&tipo=${selectedTipo}`;
+      const response = await fetch(url);
+
+      if (response.status > 400) throw new Error("Status code err");
+      let data = await response.json();
+      setPopularBrands(data);
+    } catch (e: any) {
+      return null;
+    }
+  };
+
+  const getNewBrands = async () => {
+    try {
+      const url = `${process.env.NEXT_PUBLIC_BACKEND_BASE_URL}/api/v1/marcas/?page_size=99&estado__nombre=Nuevo&tipo=${selectedTipo}`;
+      const response = await fetch(url);
+
+      if (response.status > 400) throw new Error("Status code err");
+      let data = await response.json();
+      setNewBrands(data);
+    } catch (e: any) {
+      return null;
+    }
+  };
+
+  const onChangeTipo = (tipo: any) => {
+    setLoading(true);
+    setselectedTipo(tipo);
+  };
+
+  useEffect(() => {
+    const runUpdate = async () => {
+      await getPopularBrands();
+      await getNewBrands();
+    }
+    runUpdate().then(() => {
+      console.log("updated");
+      setLoading(false);
+    });
+  }, [selectedTipo]);
+
   return (
     <>
       <main>
         <section>
           <Navbar />
         </section>
-        <BannerHome />
+        <BannerHome onChangeTipo={onChangeTipo} />
+        {loading? (
+          <section>
+          <div className="bg-[#0d132f] h-20 z-[1] relative" />
+          <div className="h-full min-h-[60vh] w-full flex justify-center items-center">
+            <div
+              style={{ fontFamily: "Mukata Mahee Bold" }}
+              className="text-[#fa5e4d] text-9xl animate-spin"
+            >
+              <CgSpinnerTwoAlt />
+            </div>
+          </div>
+        </section>
+        ):(
         <section className="lg:pt-5 flex justify-center w-full relative">
           <div className="sm:max-w-[540px] md:max-w-[720px] lg:max-w-[960px] xl:max-w-[1140px] 2xl:max-w-[1320px] w-full">
             <div className="flex flex-wrap mb-6">
@@ -87,7 +148,7 @@ const HomePageComponent = ({ popularBrands, newBrands }: props) => {
                     fontFamily: "Mukata Mahee Extra Bold",
                   }}
                 >
-                  Encuentra tu Franquicia
+                  Encuentra tu Negocio
                 </p>
                 <div className="w-full flex justify-center">
                   <p
@@ -116,10 +177,11 @@ const HomePageComponent = ({ popularBrands, newBrands }: props) => {
                       <li
                         onChange={() => handleCategoryChange(category.value)}
                         key={category.id}
-                        className={`${selectedCategory === category.value
-                          ? "text-[#CC4B3D]"
-                          : "text-[#0d132f]"
-                          } opcion flex  hover:text-[#CC4B3D]`}
+                        className={`${
+                          selectedCategory === category.value
+                            ? "text-[#CC4B3D]"
+                            : "text-[#0d132f]"
+                        } opcion flex  hover:text-[#CC4B3D]`}
                       >
                         <label
                           className="border-0 text-xs lg:text-base lg:px-10 px-0 gap-1 flex justify-center items-center"
@@ -154,9 +216,21 @@ const HomePageComponent = ({ popularBrands, newBrands }: props) => {
             </div>
           </div>
         </section>
+        )}
         <section className="h-[15em] sm:h-[20em] md:h-[35.2em]  flex items-center bg-[#FFFFFF] w-full">
-          <a href=" https://experiencia.escala.com/escala-franquiciaplus" target="_blank" rel="noopener noreferrer">
-            <video className="images" loop autoPlay preload="auto" muted playsInline>
+          <a
+            href=" https://experiencia.escala.com/escala-franquiciaplus"
+            target="_blank"
+            rel="noopener noreferrer"
+          >
+            <video
+              className="images"
+              loop
+              autoPlay
+              preload="auto"
+              muted
+              playsInline
+            >
               <source type="video/mp4" src="/video.mp4" />
             </video>
           </a>
@@ -194,6 +268,7 @@ const HomePageComponent = ({ popularBrands, newBrands }: props) => {
             </div>
           </div>
         </section>
+
         <section>
           <div className="block lg:hidden">
             <HomeCarouselPhone />
@@ -217,8 +292,9 @@ const HomePageComponent = ({ popularBrands, newBrands }: props) => {
       </main>
       <ChatBot />
       <div
-        className={`fixed bottom-2 left-0 right-0 ${isAtBottom ? "hidden" : "flex"
-          } justify-center z-30`}
+        className={`fixed bottom-2 left-0 right-0 ${
+          isAtBottom ? "hidden" : "flex"
+        } justify-center z-30`}
       >
         <div className="animate-bounce lg:h-[10vh] h-[5vh]">
           <Image

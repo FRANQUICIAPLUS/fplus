@@ -6044,6 +6044,42 @@ textarea.form-control-lg {
   right: 0;
 }
 
+/* Para pantallas más pequeñas (móviles, hasta 480px) */
+@media (max-width: 480px) {
+  .carousel-control-next {
+    right: -78px; /* Ajusta un poco más la flecha para móviles pequeños */
+  }
+}
+
+/* Para pantallas de tabletas (hasta 768px) */
+@media (max-width: 768px) {
+  .carousel-control-next {
+    right: -78px; /* Ajuste para tabletas */
+  }
+}
+
+/* Para pantallas de laptop (hasta 992px) */
+@media (max-width: 992px) {
+  .carousel-control-next {
+    right: -115px; /* Ajuste para laptops */
+  }
+}
+
+/* Para pantallas grandes (hasta 1200px) */
+@media (max-width: 1200px) {
+  .carousel-control-next {
+    right: -190px; /* Ajuste para pantallas grandes */
+  }
+}
+
+/* Para pantallas muy grandes (más de 1200px) */
+@media (min-width: 1201px) {
+  .carousel-control-next {
+    right: -190px; /* Un poco más lejos para pantallas gigantes */
+  }
+}
+
+
 .carousel-control-prev-icon,
 .carousel-control-next-icon {
   display: inline-block;
