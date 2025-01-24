@@ -15,7 +15,7 @@ import { Inversion } from "@/types/Inversion";
 import axios from "@/app/utils/axios";
 import { useRouter } from "next/navigation";
 
-export default function BannerHome() {
+export default function BannerHome({ onChangeTipo }: any) {
   const router = useRouter();
   const [ubicacion, setUbicacion] = useState<Sector[]>([]);
   const [categoria, setCategoria] = useState<Sector[]>([]);
@@ -23,7 +23,7 @@ export default function BannerHome() {
   const [ubicacionElegida, setUbicacionElegida] = useState<string>("");
   const [categoriaElegida, setCategoriaElegida] = useState<string>("");
   const [inversionElegida, setInversionElegida] = useState<string>("");
-  const [tipo, setTipo] = useState<string>("Business");
+  const [tipo, setTipo] = useState<string>("");
 
   useEffect(() => {
     getUbicacion();
@@ -105,9 +105,15 @@ export default function BannerHome() {
   };
 
   const TIPO_CHOICES = [
-    { text: "Negocio", code: "Business" },
-    { text: "Franquicia", code: "Franchise" },
+    { text: <strong>NEGOCIOS</strong>, code: "Business" },
+    { text: <strong>FRANQUICIAS</strong>, code: "Franchise" },
   ];
+
+  const changeTipo = (event: any) => {
+    console.log(event.target.value);
+    setTipo(event.target.value);
+    onChangeTipo(event.target.value);
+  };
 
   return (
     <section
@@ -139,7 +145,7 @@ export default function BannerHome() {
             />
             <div className="absolute h-full top-0 bottom-0 flex items-center ml-40 text-7xl w-[35rem]">
               <div className="mb-72 fade-in text-white">
-                FRANQUICIAS DESDE $4.000
+                FRANQUICIAS DESDE $6.000
               </div>
             </div>
           </Carousel.Item>
@@ -291,19 +297,20 @@ export default function BannerHome() {
               </select>
             </div>
 
-            <div className="w-full mt-0 absolute -top-12 -left-3">
+            <div className="w-full mt-0 absolute lg:-top-13 -top-16 -left-5">
               {TIPO_CHOICES.map((item, index) => (
                 <label
                   key={index}
-                  className={`inline-block text-2xl lg:text-base px-8 py-[6px] rounded-lg ms-2 border border-gray-200 cursor-pointer ${
-                    tipo === item.code ? "bg-[#cccccc]" : "bg-white"
+                  className={`inline-block md:text-2xl text-xl lg:text-base md:px-8 px-4 py-[6px] rounded-lg ms-2 border border-gray-200 cursor-pointer ${
+                    tipo === item.code ? "bg-[#29bdd3]" : "bg-white"
                   }`}
                 >
                   <input
                     type="radio"
                     name="tipo"
+                    id={`${index}`}
                     value={item.code}
-                    onChange={(e) => setTipo(e.target.value)}
+                    onChange={changeTipo}
                     className="mr-2 appearance-none  bg-white hidden"
                   />
                   {item.text}
