@@ -223,16 +223,22 @@ const HomePageComponent = ({ popBrands, Brands }: props) => {
             target="_blank"
             rel="noopener noreferrer"
           >
-            <video
-              className="images"
-              loop
-              autoPlay
-              preload="auto"
-              muted
-              playsInline
-            >
-              <source type="video/mp4" src="/video.mp4" />
-            </video>
+<div className="flex justify-center items-center w-full h-screen overflow-hidden">
+  <video
+    className="w-full h-auto max-h-screen object-cover"
+    loop
+    autoPlay
+    preload="auto"
+    muted
+    playsInline
+  >
+    <source type="video/mp4" src="/video.mp4" />
+  </video>
+</div>
+
+
+
+
           </a>
         </section>
         <section className="-mt-29 z-[0] text-white pb-10 flex justify-center gradientHomeBg h-full w-full">

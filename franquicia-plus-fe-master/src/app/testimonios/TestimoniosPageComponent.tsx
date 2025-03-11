@@ -40,7 +40,7 @@ const TestimoniosPageComponent: React.FC = () => {
             </div>
             <div
               style={{ fontFamily: "Mukata Mahee Bold" }}
-              className="absolute top-0 bottom-0 lg:left-28 right-12 flex items-center text-white lg:text-5xl text-3xl"
+              className="absolute top-0 bottom-0 lg:left-1/2 right-1/2 flex justify-center items-center text-white lg:text-5xl text-3xl"
             >
               TESTIMONIOS
             </div>
@@ -66,7 +66,7 @@ const TestimoniosPageComponent: React.FC = () => {
           <div className="w-full bg-[#020928] lg:w-1/2">
             <iframe
               className="w-full h-64 lg:h-80 rounded-lg shadow-lg"
-              src="https://video-websecua.s3.us-east-2.amazonaws.com/fplus/Testimonio+Nitro+Paradice+(SUBIR+PLATAFORMA).mp4#t=1"
+              src="https://video-websecua.s3.us-east-2.amazonaws.com/fplus/Testimonio+Nitro+Paradice+(SUBIR+PLATAFORMA).mp4"
               title="Testimonio 2"
               allow="accelerometer;  clipboard-write; encrypted-media; gyroscope; picture-in-picture"
               allowFullScreen

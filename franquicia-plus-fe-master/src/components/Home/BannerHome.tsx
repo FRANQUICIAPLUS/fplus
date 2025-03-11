@@ -297,26 +297,27 @@ export default function BannerHome({ onChangeTipo }: any) {
               </select>
             </div>
 
-            <div className="w-full mt-0 absolute lg:-top-13 -top-16 -left-5">
-              {TIPO_CHOICES.map((item, index) => (
-                <label
-                  key={index}
-                  className={`inline-block md:text-2xl text-xl lg:text-base md:px-8 px-4 py-[6px] rounded-lg ms-2 border border-gray-200 cursor-pointer ${
-                    tipo === item.code ? "bg-[#29bdd3]" : "bg-white"
-                  }`}
-                >
-                  <input
-                    type="radio"
-                    name="tipo"
-                    id={`${index}`}
-                    value={item.code}
-                    onChange={changeTipo}
-                    className="mr-2 appearance-none  bg-white hidden"
-                  />
-                  {item.text}
-                </label>
-              ))}
-            </div>
+            <div className="w-full mt-0 absolute lg:-top-13 -top-16 -left-5 flex md:justify-start justify-between gap-2">
+  {TIPO_CHOICES.map((item, index) => (
+    <label
+      key={index}
+      className={`text-xl md:text-2xl lg:text-base md:px-3 px-6 py-[6px] rounded-lg border border-gray-200 cursor-pointer transition-colors duration-300 text-center w-1/2 min-w-[45%] md:w-auto md:min-w-0 ${
+        tipo === item.code ? "bg-[#29bdd3] text-white" : "bg-white"
+      } hover:bg-[#29bdd3]/80 hover:text-white`}
+    >
+      <input
+        type="radio"
+        name="tipo"
+        id={`${index}`}
+        value={item.code}
+        onChange={changeTipo}
+        className="hidden"
+      />
+      {item.text}
+    </label>
+  ))}
+</div>
+
 
             <div className="w-full h-[2.125em] lg:h-full flex items-center justify-center mt-4 lg:mt-0">
               <button

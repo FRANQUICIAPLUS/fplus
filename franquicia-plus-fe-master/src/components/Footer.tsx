@@ -143,17 +143,12 @@ const Footer = () => {
               >
                 Sobre Franquicia Plus
               </div>
+             
               <div
                 className="text-white cursor-pointer text-base hover:text-[#fa5e4d]"
-                onClick={() => redirect("/consultores-de-franquicias")}
+                onClick={() => redirect("#")}
               >
-                Franquicia tu negocio
-              </div>
-              <div
-                className="text-white cursor-pointer text-base hover:text-[#fa5e4d]"
-                onClick={() => redirect("/certificado-de-franquicias/")}
-              >
-                Certificate en F+
+                Servicios
               </div>
               <div
                 className="text-white cursor-pointer text-base hover:text-[#fa5e4d]"
