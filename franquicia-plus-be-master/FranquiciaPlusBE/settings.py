@@ -184,6 +184,7 @@ DEFAULT_AUTO_FIELD = "django.db.models.BigAutoField"
 CSRF_TRUSTED_ORIGINS = [
     "https://franquiciaplusbe-production.up.railway.app",
     "https://franquiciaplus.com",
+    "https://www.franquiciaplus.com",
 ]
 
 # Amazon AWS S3
@@ -193,3 +194,11 @@ AWS_SECRET_ACCESS_KEY = env("AWS_SECRET_ACCESS_KEY")
 AWS_STORAGE_BUCKET_NAME = env("AWS_STORAGE_BUCKET_NAME")
 AWS_QUERYSTRING_AUTH = env("AWS_QUERYSTRING_AUTH")
 AWS_QUERYSTRING_EXPIRE = env("AWS_QUERYSTRING_EXPIRE")
+
+# added by mlv for full compatibilty
+AWS_QUERYSTRING_EXPIRE=15778463000
+AWS_QUERYSTRING_AUTH=False
+AWS_EXPIRY=60 * 60 * 24 * 7
+MEDIA_URL= 'https://%s/' % AWS_STORAGE_BUCKET_NAME
+STATICFILES_STORAGE=DEFAULT_FILE_STORAGE
+STATIC_URL=MEDIA_URL
