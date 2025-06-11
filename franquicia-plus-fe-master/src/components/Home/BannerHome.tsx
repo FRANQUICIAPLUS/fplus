@@ -110,9 +110,15 @@ export default function BannerHome({ onChangeTipo }: any) {
   ];
 
   const changeTipo = (event: any) => {
-    console.log(event.target.value);
-    setTipo(event.target.value);
-    onChangeTipo(event.target.value);
+    const selectedValue = event.target.value;
+    setTipo(selectedValue);
+    onChangeTipo({ tipo: selectedValue });
+  };
+
+  const handleUbicacionChange = (event: any) => {
+    const selectedCountry = event.target.value;
+    setUbicacionElegida(selectedCountry);
+    onChangeTipo({ pais: selectedCountry }); // Pass the country to parent component
   };
 
   return (
@@ -251,12 +257,10 @@ export default function BannerHome({ onChangeTipo }: any) {
             <div className="w-full mt-0 lg:flex lg:justify-center lg:px-[5px]">
               <select
                 value={ubicacionElegida}
-                onChange={(e: any) => setUbicacionElegida(e.target.value)}
+                onChange={handleUbicacionChange}
                 className="card-select inline-block text-2xl lg:text-base"
               >
-                <option value="" selected>
-                  Ubicación
-                </option>
+                <option value="">Ubicación</option>
                 {ubicacion.map((ubi, index) => (
                   <option key={index} value={ubi.nombre}>
                     {ubi.nombre}

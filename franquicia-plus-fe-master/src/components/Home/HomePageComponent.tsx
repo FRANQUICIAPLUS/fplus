@@ -40,7 +40,7 @@ const HomePageComponent = ({ popBrands, Brands }: props) => {
   ]);
   const [selectedCategory, setSelectedCategory] = useState("Todo");
   const [selectedTipo, setselectedTipo] = useState("");
-  
+  const [selectedPais, setSelectedPais] = useState("");
   const [loading, setLoading] = useState(false);
 
   useEffect(() => {
@@ -76,7 +76,15 @@ const HomePageComponent = ({ popBrands, Brands }: props) => {
 
   const getPopularBrands = async () => {
     try {
-      const url = `${process.env.NEXT_PUBLIC_BACKEND_BASE_URL}/api/v1/marcas/?page_size=99&estado__nombre=Premium&tipo=${selectedTipo}`;
+      let url = `${process.env.NEXT_PUBLIC_BACKEND_BASE_URL}/api/v1/marcas/?page_size=99&estado__nombre=Premium`;
+      
+      if (selectedTipo) {
+        url += `&tipo=${selectedTipo}`;
+      }
+      if (selectedPais) {
+        url += `&ubicacion__nombre=${selectedPais}`;
+      }
+
       const response = await fetch(url);
 
       if (response.status > 400) throw new Error("Status code err");
@@ -89,7 +97,15 @@ const HomePageComponent = ({ popBrands, Brands }: props) => {
 
   const getNewBrands = async () => {
     try {
-      const url = `${process.env.NEXT_PUBLIC_BACKEND_BASE_URL}/api/v1/marcas/?page_size=99&estado__nombre=Nuevo&tipo=${selectedTipo}`;
+      let url = `${process.env.NEXT_PUBLIC_BACKEND_BASE_URL}/api/v1/marcas/?page_size=99&estado__nombre=Nuevo`;
+      
+      if (selectedTipo) {
+        url += `&tipo=${selectedTipo}`;
+      }
+      if (selectedPais) {
+        url += `&ubicacion__nombre=${selectedPais}`;
+      }
+
       const response = await fetch(url);
 
       if (response.status > 400) throw new Error("Status code err");
@@ -100,9 +116,14 @@ const HomePageComponent = ({ popBrands, Brands }: props) => {
     }
   };
 
-  const onChangeTipo = (tipo: any) => {
+  const onChangeTipo = (data: any) => {
     setLoading(true);
-    setselectedTipo(tipo);
+    if (data.tipo) {
+      setselectedTipo(data.tipo);
+    }
+    if (data.pais) {
+      setSelectedPais(data.pais);
+    }
   };
 
   useEffect(() => {
@@ -111,10 +132,10 @@ const HomePageComponent = ({ popBrands, Brands }: props) => {
       await getNewBrands();
     }
     runUpdate().then(() => {
-      console.log("updated");
+      console.log("updated with filters - country:", selectedPais, "type:", selectedTipo);
       setLoading(false);
     });
-  }, [selectedTipo]);
+  }, [selectedTipo, selectedPais]);  // Run when either type or country changes
 
   return (
     <>
