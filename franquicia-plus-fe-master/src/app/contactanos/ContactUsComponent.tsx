@@ -194,9 +194,46 @@ const ContactUsComponent = () => {
   const [phone, setPhone] = useState("");
   const [country, setCountry] = useState("");
   const [message, setMessage] = useState("");
+  const [isPhoneValid, setIsPhoneValid] = useState(true);
+
+  // Phone validation function
+  const validatePhone = (phoneNumber: string): boolean => {
+    // Remove any spaces or formatting
+    const cleanPhone = phoneNumber.replace(/\s/g, '');
+    // Check if it's exactly 9 digits and only contains numbers
+    const phoneRegex = /^\d{9}$/;
+    const isValid = phoneRegex.test(cleanPhone);
+    setIsPhoneValid(isValid || phoneNumber === ""); // Empty is considered valid for styling
+    return isValid;
+  };
+
+  // Format phone input to only allow numbers and enforce 9-digit limit
+  const handlePhoneChange = (e: React.ChangeEvent<HTMLInputElement>) => {
+    const value = e.target.value;
+    // Remove any non-numeric characters
+    const numbersOnly = value.replace(/\D/g, '');
+    // Limit to 9 digits
+    const limitedNumbers = numbersOnly.slice(0, 9);
+    setPhone(limitedNumbers);
+    validatePhone(limitedNumbers);
+  };
 
   const handleSubmit = (e: React.FormEvent) => {
     e.preventDefault();
+    
+    // Validate phone number
+    if (!validatePhone(phone)) {
+      if (phone.length === 0) {
+        toast.error("El número de WhatsApp es requerido.");
+      } else if (phone.length < 9) {
+        toast.error("El número de WhatsApp debe tener exactamente 9 dígitos.");
+      } else {
+        toast.error("El número de WhatsApp solo debe contener números y tener exactamente 9 dígitos.");
+      }
+      setIsPhoneValid(false);
+      return;
+    }
+
     if (
       names !== "" &&
       surnames !== "" &&
@@ -505,10 +542,10 @@ const ContactUsComponent = () => {
                     required
                     defaultValue=""
                     value={phone}
-                    onChange={(e: any) => setPhone(e.target.value)}
+                    onChange={handlePhoneChange}
                     type="text"
                     placeholder="WhatsApp"
-                    className="py-3 pl-2 rounded-lg lg:w-44"
+                    className={`py-3 pl-2 rounded-lg lg:w-44 ${!isPhoneValid ? 'border-2 border-red-500' : ''}`}
                   />
                 </div>
                 <div className="flex justify-start">

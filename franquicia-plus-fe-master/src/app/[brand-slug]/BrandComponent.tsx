@@ -531,6 +531,7 @@ const BrandComponent = ({ detalleMarca }: props) => {
   const [flag, setFlag] = useState(
     "https://upload.wikimedia.org/wikipedia/commons/9/96/Flag_of_Ecuador.png"
   ); // Bandera inicial de Ecuador
+  const [isPhoneValid, setIsPhoneValid] = useState(true);
   const router = useRouter();
   const pathname = usePathname();
 
@@ -577,10 +578,27 @@ const BrandComponent = ({ detalleMarca }: props) => {
     }
   };
 
+  // Phone validation function
+  const validatePhoneNumber = (phoneNumber: string): boolean => {
+    // Remove any spaces or formatting
+    const cleanPhone = phoneNumber.replace(/\s/g, '');
+    // Check if it's exactly 9 digits and only contains numbers
+    const phoneRegex = /^\d{9}$/;
+    const isValid = phoneRegex.test(cleanPhone);
+    setIsPhoneValid(isValid || phoneNumber === ""); // Empty is considered valid for styling
+    return isValid;
+  };
+
   const handlePhoneChange = (e: any) => {
-    // const phoneValue = e.target.value.replace(phoneCode, ''); // Eliminar el código al editar
-    setPhone(`${phoneCode}${e.target.value}`); // Mantener el código y actualizar el número
-    setPhone2(e.target.value);
+    const value = e.target.value;
+    // Remove any non-numeric characters
+    const numbersOnly = value.replace(/\D/g, '');
+    // Limit to 9 digits
+    const limitedNumbers = numbersOnly.slice(0, 9);
+    
+    setPhone(`${phoneCode}${limitedNumbers}`); // Mantener el código y actualizar el número
+    setPhone2(limitedNumbers);
+    validatePhoneNumber(limitedNumbers);
   };
 
   useEffect(() => {
@@ -589,6 +607,20 @@ const BrandComponent = ({ detalleMarca }: props) => {
 
   const handleSubmit = (e: React.FormEvent) => {
     e.preventDefault();
+    
+    // Validate phone number
+    if (!validatePhoneNumber(phone2)) {
+      if (phone2.length === 0) {
+        toast.error("El número de teléfono celular es requerido.");
+      } else if (phone2.length < 9) {
+        toast.error("El número de teléfono celular debe tener exactamente 9 dígitos.");
+      } else {
+        toast.error("El número de teléfono celular solo debe contener números y tener exactamente 9 dígitos.");
+      }
+      setIsPhoneValid(false);
+      return;
+    }
+    
     if (
       name !== "" &&
       surname !== "" &&
@@ -1521,7 +1553,7 @@ const BrandComponent = ({ detalleMarca }: props) => {
                               <span className="text-md">{phoneCode}</span>
                               <input
                                 type="text"
-                                className="form-control flex-1 pl-2"
+                                className={`form-control flex-1 pl-2 ${!isPhoneValid ? 'border-2 border-red-500' : ''}`}
                                 name="telefono"
                                 value={phone2}
                                 onChange={handlePhoneChange}
