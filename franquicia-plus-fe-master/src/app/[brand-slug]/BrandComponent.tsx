@@ -532,6 +532,7 @@ const BrandComponent = ({ detalleMarca }: props) => {
     "https://upload.wikimedia.org/wikipedia/commons/9/96/Flag_of_Ecuador.png"
   ); // Bandera inicial de Ecuador
   const [isPhoneValid, setIsPhoneValid] = useState(true);
+  const [phoneError, setPhoneError] = useState("");
   const router = useRouter();
   const pathname = usePathname();
 
@@ -579,26 +580,59 @@ const BrandComponent = ({ detalleMarca }: props) => {
   };
 
   // Phone validation function
-  const validatePhoneNumber = (phoneNumber: string): boolean => {
+  const validatePhoneNumber = (phoneNumber: string): { isValid: boolean; message: string } => {
     // Remove any spaces or formatting
     const cleanPhone = phoneNumber.replace(/\s/g, '');
+    
+    // Empty is considered valid for styling during input
+    if (!phoneNumber) {
+      return { isValid: true, message: "" };
+    }
+
+    // Check if number starts with '593' or '0'
+    if (cleanPhone.startsWith('593') || cleanPhone.startsWith('0')) {
+      return { 
+        isValid: false, 
+        message: "El número no debe empezar con '593' ni con '0'" 
+      };
+    }
+    
     // Check if it's exactly 9 digits and only contains numbers
     const phoneRegex = /^\d{9}$/;
     const isValid = phoneRegex.test(cleanPhone);
-    setIsPhoneValid(isValid || phoneNumber === ""); // Empty is considered valid for styling
-    return isValid;
+    
+    if (!isValid) {
+      if (cleanPhone.length < 9) {
+        return { 
+          isValid: false, 
+          message: "El número debe tener 9 dígitos" 
+        };
+      }
+      return { 
+        isValid: false, 
+        message: "El número solo debe contener dígitos" 
+      };
+    }
+    
+    return { isValid: true, message: "" };
   };
 
   const handlePhoneChange = (e: any) => {
     const value = e.target.value;
     // Remove any non-numeric characters
     const numbersOnly = value.replace(/\D/g, '');
+    // Remove '593' or '0' from the start if present
+    const cleanNumber = numbersOnly.replace(/^(593|0)/, '');
     // Limit to 9 digits
-    const limitedNumbers = numbersOnly.slice(0, 9);
+    const limitedNumbers = cleanNumber.slice(0, 9);
     
     setPhone(`${phoneCode}${limitedNumbers}`); // Mantener el código y actualizar el número
     setPhone2(limitedNumbers);
-    validatePhoneNumber(limitedNumbers);
+    
+    // Update validation state without showing toast
+    const validation = validatePhoneNumber(limitedNumbers);
+    setIsPhoneValid(validation.isValid);
+    setPhoneError(validation.message);
   };
 
   useEffect(() => {
@@ -608,15 +642,10 @@ const BrandComponent = ({ detalleMarca }: props) => {
   const handleSubmit = (e: React.FormEvent) => {
     e.preventDefault();
     
-    // Validate phone number
-    if (!validatePhoneNumber(phone2)) {
-      if (phone2.length === 0) {
-        toast.error("El número de teléfono celular es requerido.");
-      } else if (phone2.length < 9) {
-        toast.error("El número de teléfono celular debe tener exactamente 9 dígitos.");
-      } else {
-        toast.error("El número de teléfono celular solo debe contener números y tener exactamente 9 dígitos.");
-      }
+    // Validate phone number on submit
+    const phoneValidation = validatePhoneNumber(phone2);
+    if (!phoneValidation.isValid) {
+      toast.error(phoneValidation.message);
       setIsPhoneValid(false);
       return;
     }
@@ -1529,7 +1558,7 @@ const BrandComponent = ({ detalleMarca }: props) => {
                         <div className="flex items-center border rounded-lg overflow-hidden">
                           <div className="flex flex-col items-center md:flex-row gap-4 border-r w-full">
                             <select
-                              className="form-control cursor-pointer lg:w-[60%!important]"
+                              className="form-control cursor-pointer lg:w-[40%!important]"
                               id="pais-interes"
                               name="pais"
                               value={country}
@@ -1551,15 +1580,22 @@ const BrandComponent = ({ detalleMarca }: props) => {
                                 className="w-6 h-4"
                               />
                               <span className="text-md">{phoneCode}</span>
-                              <input
-                                type="text"
-                                className={`form-control flex-1 pl-2 ${!isPhoneValid ? 'border-2 border-red-500' : ''}`}
-                                name="telefono"
-                                value={phone2}
-                                onChange={handlePhoneChange}
-                                placeholder="Teléfono celular"
-                                required
-                              />
+                              <div className="relative w-full">
+                                <input
+                                  type="text"
+                                  className={`form-control flex-1 pl-2 ${!isPhoneValid ? 'border-2 border-red-500' : ''}`}
+                                  name="telefono"
+                                  value={phone2}
+                                  onChange={handlePhoneChange}
+                                  placeholder="Teléfono celular"
+                                  required
+                                />
+                                {phoneError && (
+                                  <span className="absolute left-0 -bottom-5 text-xs text-red-500">
+                                    {phoneError}
+                                  </span>
+                                )}
+                              </div>
                             </div>
                           </div>
                         </div>
